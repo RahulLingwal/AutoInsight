@@ -1,359 +1,366 @@
 *,
 ::after,
 ::before {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    height: 10000px;
-	font-family: Arial, sans-serif;
-	background-color: rgb(10, 10, 10);
-    color: white;
-	font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
-	scroll-behavior: smooth;
+  height: 10000px;
+  font-family: Arial, sans-serif;
+  background-color: rgb(10, 10, 10);
+  color: white;
+  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
 }
 
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* HEADER OF THE PAGE */
 
 .icons {
-	width: 20px;
+  width: 20px;
 }
 
 .navbar {
-	height: 70px;
-	padding: 0 3.5rem;
-	background-color: rgb(18, 18, 27);
-    color: white;
-    border: 1px solid rgb(91, 91, 91);
+  height: 70px;
+  padding: 0 3.5rem;
+  background-color: rgb(18, 18, 27);
+  color: white;
+  border: 1px solid rgb(91, 91, 91);
 
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
 
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
 .navigation-bar-logo {
-	height: 100%;
-	border-radius: 20px;
-	padding: 5px 0;
-	transition: background-color 0.15s;
+  height: 100%;
+  border-radius: 20px;
+  padding: 5px 0;
+  transition: background-color 0.15s;
+}
+
+.navlist li:first-child {
+  background-color: blue;
 }
 
 .AutoInsight {
-	height: 100%;
-	text-decoration: none;
-	color: white;
-	padding: 0 15px;
+  height: 100%;
+  text-decoration: none;
+  color: white;
+  padding: 0 15px;
 
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 0.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 .AutoInsight div:first-child {
-	height: 80%;
-	width: auto;
-	background-color: rgb(0, 110, 255);
-	border-radius: 15px;
+  height: 80%;
+  width: auto;
+  background-color: rgb(0, 110, 255);
+  border-radius: 15px;
 
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    margin-right: 10px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  margin-right: 10px;
 }
 
 .AutoInsight div img {
-    width: 40px;
+  width: 40px;
 }
 
 .AutoInsight div p:first-child {
-	font-size: 1.1rem;
-	font-weight: 800;
-	letter-spacing: 1.2px;
-    text-align: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-align: center;
 }
 
 .AutoInsight div p:last-child {
-	font-size: 0.7rem;
-    font-weight: bold;
-    color: rgb(181, 181, 181);
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: rgb(181, 181, 181);
 }
 
 .navigation-bar {
-	height: 100%;
+  height: 100%;
 }
 
 .navlist {
-    padding: 0 20px;
-	height: 100%;
-	list-style-type: none;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
+  padding: 0 20px;
+  height: 100%;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navlist li {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .navlist-items {
-	padding: 0.5rem 1.5rem;
-	text-decoration: none;
-	font-size: 0.9rem;
-	color: white;
-	border-radius: 20px;
-	font-weight: 500;
-	transition: background-color 0.15s;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  transition: background-color 0.15s;
+}
 
-	display: flex;
-	align-items: center;
+.navlist-items a {
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: white;
+  display: flex;
+  align-items: center;
 }
 
 .navlist-items:hover {
-	background-color: rgb(42, 42, 50);
+  background-color: rgb(42, 42, 50);
 }
 
 .navlist-items img {
-	width: 1.2rem;
-	margin-right: 5px;
-	vertical-align: middle;
+  width: 1.2rem;
+  margin-right: 5px;
+  vertical-align: middle;
 }
 
 .navbarButtons {
-	height: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .navbarButtons a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .navbarButtons button {
-	padding: 10px 20px;
-	border-radius: 15px;
-	font-size: 0.92rem;
-	font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 15px;
+  font-size: 0.92rem;
+  font-weight: 500;
 
-	display: flex;
-	align-items: center;
-	gap: 0.2rem;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
 }
 
 .logInButton {
-    background-color: transparent;
-    color: white;
-    border: none;
+  background-color: transparent;
+  color: white;
+  border: none;
 }
 
 .signUpButton {
-	background-color: rgb(225, 0, 10);
-	color: white;
-    border: none;
-	transition: background-color 0.15s;
+  background-color: rgb(225, 0, 10);
+  color: white;
+  border: none;
+  transition: background-color 0.15s;
 }
 
 .hero-section {
-    height: 900px;
-    width: auto;
-    padding-top: 220px;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../Asset/Images/carBackground.jpg);
-    background-repeat: no-repeat;
-    background-size: contain;
+  height: 900px;
+  width: auto;
+  padding-top: 220px;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(../Asset/Images/carBackground.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-	gap: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 3.5rem;
 }
 
 .review-platform {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-    color: white;
-    border: 1px solid rgb(19, 59, 99);
-    border-radius: 2rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  border: 1px solid rgb(19, 59, 99);
+  border-radius: 2rem;
 
-    display: flex;
-    width: fit-content;
-	align-items: center;
+  display: flex;
+  width: fit-content;
+  align-items: center;
 }
 
 .review-platform img {
-	width: 20px;
+  width: 20px;
 }
 
 .review-platform p {
-	color: rgb(209, 213, 220);
-	font-weight: bold;
+  color: rgb(209, 213, 220);
+  font-weight: bold;
 }
 
 .hero-section-text {
-	width: 60%;
-	margin: 0 auto;
-	text-align: center;
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
 
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .hero-section-text h3 {
-	font-size: 4.5rem;
-	font-weight: bolder;
-	color: rgb(56, 152, 253);
+  font-size: 4.5rem;
+  font-weight: bolder;
+  color: rgb(56, 152, 253);
 }
 
 .hero-section-text p {
-	font-size: 1.4rem;
-	letter-spacing: 2px;
-	color: rgb(209, 213, 220);
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  color: rgb(209, 213, 220);
 }
 
 .search-car {
-	width: 60%;
-	height: 80px;
-	background-color: rgb(22, 23, 32);
-	border: 1px solid rgb(66, 67, 74);
-	border-radius: 15px;
+  width: 60%;
+  height: 80px;
+  background-color: rgb(22, 23, 32);
+  border: 1px solid rgb(66, 67, 74);
+  border-radius: 15px;
 
-	display: flex;
-	align-items: center;
-	justify-content: start;
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
 
 .search-icon {
-	height: 100%;
-	width: 5rem;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
+  height: 100%;
+  width: 5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .search-car img {
-	width: 25px;
+  width: 25px;
 }
 
 .search-car input {
-	height: 100%;
-	width: 65%;
-	background-color: transparent;
-	color: white;
-	padding: 15px 0;
-	border: none;
-	font-size: 1.1rem;
+  height: 100%;
+  width: 65%;
+  background-color: transparent;
+  color: white;
+  padding: 15px 0;
+  border: none;
+  font-size: 1.1rem;
 }
 
 .search-car input:focus {
-	outline: none;
+  outline: none;
 }
 
 .search-car-button {
-	width: 25%;
-	height: 95%;
-	background-color: red;
-	border: none;
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
+  width: 25%;
+  height: 95%;
+  background-color: red;
+  border: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 
-	color: white;
-	font-size: 1rem;
-	font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .description-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	gap: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
 }
 
 .description-grid div {
-	padding: 25px 50px;
-	background-color: rgb(18, 19, 27);
-	border-radius: 15px;
-	border: 1px solid rgb(66, 67, 74);
-	text-align: center;
+  padding: 25px 50px;
+  background-color: rgb(18, 19, 27);
+  border-radius: 15px;
+  border: 1px solid rgb(66, 67, 74);
+  text-align: center;
 }
 
 .description-grid div h4 {
-	color: rgb(76, 158, 252);
-	font-size: 2.8rem;
+  color: rgb(76, 158, 252);
+  font-size: 2.8rem;
 }
 
 .description-grid div p {
-	color: rgb(136, 143, 156);
-	font-weight: bold;
+  color: rgb(136, 143, 156);
+  font-weight: bold;
 }
 
 .featured-cars {
-	margin-top: 4.2rem;
-
+  margin-top: 4.2rem;
 }
 
 .view-all {
-	padding: 0 4rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  padding: 0 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .view-all div img {
-	width: 30px;
+  width: 30px;
 }
 
 .view-all h4 {
-	margin-left: 0.5rem;
-	margin-bottom: 0.5rem;
-	display: inline-block;
-	font-weight: bold;
-	font-size: 2.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 2.5rem;
 }
 
 .view-all p {
-	color: rgb(153, 161, 175);
-	font-size: 1.2rem;
-	letter-spacing: 1px;
+  color: rgb(153, 161, 175);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
 }
 
 .view-all button {
-	padding: 15px 25px;
-	color: rgb(30, 144, 255);
-	background-color: transparent;
-	border-radius: 20px;
-	border: 1px solid rgb(66, 67, 74);
-	font-size: 1.1rem;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
+  padding: 15px 25px;
+  color: rgb(30, 144, 255);
+  background-color: transparent;
+  border-radius: 20px;
+  border: 1px solid rgb(66, 67, 74);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .view-all button img {
-	width: 15px;
-	margin-left: 5px;
+  width: 15px;
+  margin-left: 5px;
 }
 
 .car-cardGrid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	gap: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1.2rem;
 }
