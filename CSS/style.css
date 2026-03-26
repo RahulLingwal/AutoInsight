@@ -1,28 +1,27 @@
 *,
 ::after,
 ::before {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 body {
-  height: 10000px;
-  font-family: Arial, sans-serif;
-  background-color: rgb(10, 10, 10);
-  color: white;
-  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
-  scroll-behavior: smooth;
+	font-family: Arial, sans-serif;
+	background-color: rgb(10, 10, 10);
+	color: white;
+	font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+	scroll-behavior: smooth;
 }
 
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 /* HEADER OF THE PAGE */
 
 .icons {
-  width: 20px;
+	width: 20px;
 }
 
 .navbar {
@@ -32,39 +31,39 @@ html {
   color: white;
   border: 1px solid rgb(91, 91, 91);
 
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-around;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
 }
 
 .navigation-bar-logo {
-  height: 100%;
-  border-radius: 20px;
-  padding: 5px 0;
-  transition: background-color 0.15s;
+	height: 100%;
+	border-radius: 20px;
+	padding: 5px 0;
+	transition: background-color 0.15s;
 }
 
 .navlist li:first-child {
-  background-color: blue;
+	background-color: blue;
 }
 
 .AutoInsight {
-  height: 100%;
-  text-decoration: none;
-  color: white;
-  padding: 0 15px;
+	height: 100%;
+	text-decoration: none;
+	color: white;
+	padding: 0 15px;
 
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.2rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.2rem;
 }
 
 .AutoInsight div:first-child {
@@ -98,7 +97,7 @@ html {
 }
 
 .navigation-bar {
-  height: 100%;
+	height: 100%;
 }
 
 .navlist {
@@ -112,8 +111,8 @@ html {
 }
 
 .navlist li {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .navlist-items {
@@ -125,12 +124,12 @@ html {
 }
 
 .navlist-items a {
-  font-weight: 500;
-  text-decoration: none;
-  font-size: 0.9rem;
-  color: white;
-  display: flex;
-  align-items: center;
+	font-weight: 500;
+	text-decoration: none;
+	font-size: 0.9rem;
+	color: white;
+	display: flex;
+	align-items: center;
 }
 
 .navlist li:first-child {
@@ -138,36 +137,36 @@ html {
 }
 
 .navlist-items:hover {
-  background-color: rgb(42, 42, 50);
+	background-color: rgb(42, 42, 50);
 }
 
 .navlist-items img {
-  width: 1.2rem;
-  margin-right: 5px;
-  vertical-align: middle;
+	width: 1.2rem;
+	margin-right: 5px;
+	vertical-align: middle;
 }
 
 .navbarButtons {
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 }
 
 .navbarButtons a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .navbarButtons button {
-  padding: 10px 20px;
-  border-radius: 15px;
-  font-size: 0.92rem;
-  font-weight: 500;
+	padding: 10px 20px;
+	border-radius: 15px;
+	font-size: 0.92rem;
+	font-weight: 500;
 
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+	cursor: pointer;
 }
 
 .logInButton {
@@ -213,157 +212,157 @@ html {
 }
 
 .review-platform img {
-  width: 20px;
+	width: 20px;
 }
 
 .review-platform p {
-  color: rgb(209, 213, 220);
-  font-weight: bold;
+	color: rgb(209, 213, 220);
+	font-weight: bold;
 }
 
 .hero-section-text {
-  width: 60%;
-  margin: 0 auto;
-  text-align: center;
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
 }
 
 .hero-section-text h3 {
-  font-size: 4.5rem;
-  font-weight: bolder;
-  color: rgb(56, 152, 253);
+	font-size: 4.5rem;
+	font-weight: bolder;
+	color: rgb(56, 152, 253);
 }
 
 .hero-section-text p {
-  font-size: 1.4rem;
-  letter-spacing: 2px;
-  color: rgb(209, 213, 220);
+	font-size: 1.4rem;
+	letter-spacing: 2px;
+	color: rgb(209, 213, 220);
 }
 
 .search-car {
-  width: 60%;
-  height: 80px;
-  background-color: rgb(22, 23, 32);
-  border: 1px solid rgb(66, 67, 74);
-  border-radius: 15px;
+	width: 60%;
+	height: 80px;
+	background-color: rgb(22, 23, 32);
+	border: 1px solid rgb(66, 67, 74);
+	border-radius: 15px;
 
-  display: flex;
-  align-items: center;
-  justify-content: start;
+	display: flex;
+	align-items: center;
+	justify-content: start;
 }
 
 .search-icon {
-  height: 100%;
-  width: 5rem;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+	height: 100%;
+	width: 5rem;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 }
 
 .search-car img {
-  width: 25px;
+	width: 25px;
 }
 
 .search-car input {
-  height: 100%;
-  width: 65%;
-  background-color: transparent;
-  color: white;
-  padding: 15px 0;
-  border: none;
-  font-size: 1.1rem;
+	height: 100%;
+	width: 65%;
+	background-color: transparent;
+	color: white;
+	padding: 15px 0;
+	border: none;
+	font-size: 1.1rem;
 }
 
 .search-car input:focus {
-  outline: none;
+	outline: none;
 }
 
 .search-car-button {
-  width: 25%;
-  height: 95%;
-  background-color: red;
-  border: none;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+	width: 25%;
+	height: 95%;
+	background-color: red;
+	border: none;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
+	color: white;
+	font-size: 1rem;
+	font-weight: bold;
 }
 
 .description-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 3rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 3rem;
 }
 
 .description-grid div {
-  padding: 25px 50px;
-  background-color: rgb(18, 19, 27);
-  border-radius: 15px;
-  border: 1px solid rgb(66, 67, 74);
-  text-align: center;
+	padding: 25px 50px;
+	background-color: rgb(18, 19, 27);
+	border-radius: 15px;
+	border: 1px solid rgb(66, 67, 74);
+	text-align: center;
 }
 
 .description-grid div h4 {
-  color: rgb(76, 158, 252);
-  font-size: 2.8rem;
+	color: rgb(76, 158, 252);
+	font-size: 2.8rem;
 }
 
 .description-grid div p {
-  color: rgb(136, 143, 156);
-  font-weight: bold;
+	color: rgb(136, 143, 156);
+	font-weight: bold;
 }
 
 .featured-cars {
-  padding: 5rem 0;
+	padding: 5rem 0;
 }
 
 .view-all {
-  padding: 0 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	padding: 0 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .view-all div img {
-  width: 30px;
+	width: 30px;
 }
 
 .view-all h4 {
-  margin-left: 0.5rem;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  font-weight: bold;
-  font-size: 2.5rem;
+	margin-left: 0.5rem;
+	margin-bottom: 0.5rem;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 2.5rem;
 }
 
 .view-all p {
-  color: rgb(153, 161, 175);
-  font-size: 1.2rem;
-  letter-spacing: 1px;
+	color: rgb(153, 161, 175);
+	font-size: 1.2rem;
+	letter-spacing: 1px;
 }
 
 .view-all button {
-  padding: 15px 25px;
-  color: rgb(30, 144, 255);
-  background-color: transparent;
-  border-radius: 20px;
-  border: 1px solid rgb(66, 67, 74);
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+	padding: 15px 25px;
+	color: rgb(30, 144, 255);
+	background-color: transparent;
+	border-radius: 20px;
+	border: 1px solid rgb(66, 67, 74);
+	font-size: 1.1rem;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
 }
 
 .view-all button img {
-  width: 15px;
-  margin-left: 5px;
+	width: 15px;
+	margin-left: 5px;
 }
 
 .car-cardGrid {
@@ -375,9 +374,9 @@ html {
 }
 
 .car-card {
-  border: 1px solid rgb(53, 53, 59);
-  border-radius: 15px;
-  cursor: pointer;
+	border: 1px solid rgb(53, 53, 59);
+	border-radius: 15px;
+	cursor: pointer;
 }
 
 .car-img-container {
@@ -458,18 +457,18 @@ html {
 }
 
 hr {
-  margin: 0 auto;
-  width: 80%;
-  border-top: 1px solid rgb(84, 84, 84);
-  border-bottom: none;
+	margin: 0 auto;
+	width: 80%;
+	border-top: 1px solid rgb(52, 52, 52);
+	border-bottom: none;
 }
 
 .car-price {
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	padding: 1.5rem;
+	margin-bottom: 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .cost p:first-child {
@@ -494,5 +493,159 @@ hr {
 }
 
 .top-rated-cars {
-  margin: 3rem 0;
+	margin-top: 3rem;
+	margin-bottom: 10rem;
+}
+
+.join-us-container {
+	background: linear-gradient(90deg, rgb(12, 23, 34), rgb(10, 11, 12));
+	padding: 1rem 0;
+	margin-bottom: 5rem;
+}
+
+.join-us {
+	margin: 4rem;
+	padding: 3.5rem;
+	background-color: rgb(19, 20, 30);
+	border: 1px solid rgb(66, 67, 74);
+	border-radius: 20px;
+	box-shadow: 0 0 10px 7px rgb(14, 41, 65);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	gap: 2rem;
+}
+
+.join-us h4 {
+	color: white;
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+
+.join-us p {
+	text-align: center;
+	padding: 0 10rem;
+	letter-spacing: 1px;
+	color: rgb(209, 213, 220);
+	font-size: 1.3rem;
+}
+
+.join-us-buttons button {
+	padding: 20px 40px;
+	margin: 0 10px;
+	color: white;
+	font-size: 0.9rem;
+	font-weight: bold;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+.join-us-create-account-button {
+	background-color: transparent;
+	border: 1px solid rgb(53, 53, 59);
+	transition:
+		background-color 0.15s,
+		box-shadow 0.15s,
+		border 0.15s;
+}
+
+.join-us-create-account-button:hover {
+	background-color: rgb(67, 67, 75);
+	border: 1px solid rgb(30, 144, 255);
+	box-shadow: 0 7px 10px rgb(23, 62, 107);
+}
+
+.join-us-write-review-button {
+	background-color: rgb(227, 0, 11);
+	border: 1px solid rgb(227, 0, 11);
+	transition:
+		background-color 0.15s,
+		box-shadow 0.15s,
+		border 0.15s;
+}
+
+.join-us-write-review-button:hover {
+	box-shadow: 0 5px 15px rgb(183, 33, 41);
+}
+
+.footer {
+	padding: 3.5rem;
+	background: linear-gradient(
+		135deg,
+		rgb(20, 20, 29),
+		rgb(14, 14, 22) 40%,
+		rgb(11, 11, 16) 95%
+	);
+	border: 1px solid rgb(39, 39, 46);
+}
+
+.upper-footer {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 3rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.upper-footer-section h3 {
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: white;
+	padding-bottom: 1rem;
+}
+
+.upper-footer-section p {
+	color: rgb(120, 137, 143);
+	font-size: 0.9rem;
+	font-weight: bold;
+	line-height: 20px;
+}
+
+.upper-footer-section h4 {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: white;
+	padding-bottom: 1.5rem;
+}
+
+.footer-list {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: start;
+	gap: 1rem;
+}
+
+.footer-list li {
+	list-style-type: none;
+	cursor: pointer;
+}
+
+.footer-list li a {
+	text-decoration: none;
+	font-size: 0.9rem;
+	font-weight: bold;
+	color: rgb(161, 166, 181);
+	transition: color 0.15s;
+}
+
+.footer-list li a:hover {
+	color: rgb(30, 144, 255);
+}
+
+.footer-hr {
+	width: 95%;
+	margin: 2rem auto;
+}
+
+.lower-footer {
+	text-align: center;
+}
+
+.lower-footer p {
+	color: rgb(106, 114, 130);
+	font-size: 0.9rem;
+	font-weight: bold;
 }
