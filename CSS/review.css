@@ -1,0 +1,202 @@
+*,
+::after,
+::before {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: rgb(10, 10, 10);
+	color: white;
+	font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+	scroll-behavior: smooth;
+}
+
+.icons {
+	width: 20px;
+}
+
+.review-page-header {
+	padding: 100px 250px 30px;
+	background-color: rgb(18, 18, 27);
+	border: 1px solid rgb(66, 66, 73);
+}
+
+.review-page-header a {
+	color: rgb(206, 209, 212);
+	background-color: transparent;
+	margin-bottom: 1.2rem;
+	border: none;
+	font-size: 1rem;
+	font-weight: bold;
+	text-decoration: none;
+
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.review-page-header a:hover {
+	color: rgb(30, 144, 255);
+}
+
+.review-page-header a p:first-child {
+	transition: transform 0.15s ease;
+}
+
+.review-page-header a:hover p:first-child {
+	transform: translateX(-5px);
+}
+
+.review-page-header h2 {
+	font-size: 2.2rem;
+	font-weight: bolder;
+	margin-bottom: 0.5rem;
+}
+
+.review-page-header > p {
+	color: rgb(148, 156, 170);
+	font-size: 1.1rem;
+}
+
+.superscript-element {
+	font-size: 1.2rem;
+}
+
+.form-container {
+	width: 100vw;
+	padding: 3rem;
+}
+
+.review-form {
+	width: 68%;
+	padding: 2.8rem;
+	margin: 0 auto;
+	border: 1px solid rgb(66, 66, 73);
+	border-radius: 20px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+}
+
+.label-element {
+	color: white;
+	font-size: 0.9rem;
+	font-weight: bold;
+}
+
+.input-element {
+	width: 100%;
+	color: white;
+	background-color: rgb(29, 29, 36);
+	margin-top: 0.8rem;
+	padding: 1rem 1.5rem;
+	font-size: 15.5px;
+	border: 1px solid rgb(66, 66, 73);
+	border-radius: 15px;
+}
+
+.input-element::placeholder {
+	color: rgb(106, 114, 130);
+}
+
+.input-element:focus {
+	outline: 2.5px solid rgb(50, 147, 217);
+}
+
+.review-textarea-description p {
+	color: rgb(106, 114, 130);
+	font-size: 0.9rem;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+.ownership-and-maintenance {
+	display: flex;
+	gap: 25px;
+}
+
+.ownership-and-maintenance div {
+	flex: 1;
+}
+
+.recommend-btn-container p {
+	text-transform: uppercase;
+	margin-bottom: 0.8rem;
+}
+
+.recommend-btn-container div {
+	display: flex;
+	gap: 25px;
+}
+
+.recommend-btn-container input {
+	display: none;
+}
+
+.recommend-btn {
+	flex: 1;
+	padding: 1rem 0;
+	text-align: center;
+	border-radius: 15px;
+	border: 2px solid #3b3f4a;
+	color: #8b95a7;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+#yes:checked + .yes {
+	background: linear-gradient(to right, rgb(0, 199, 80), rgb(0, 167, 62));
+	color: white;
+	border: none;
+}
+
+#no:checked + .no {
+	background: linear-gradient(to right, rgb(250, 43, 54), rgb(231, 0, 12));
+	color: white;
+	border: none;
+}
+
+.submit-reset-btn {
+  display: flex;
+  gap: 20px;
+}
+
+.submit-btn, .cancel-btn {
+  padding: 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  flex: 1;
+  color: white;
+  background: linear-gradient(to right, rgb(30, 143, 255), rgb(14, 112, 253));
+  border: none;
+  font-size: 1.2rem;
+}
+
+.cancel-btn {
+  padding: 1.2rem 2.2rem;
+  color: white;
+  background-color: rgb(18, 18, 27);
+  border: 1px solid rgb(74, 74, 79);
+}
+
+.cancel-btn:hover {
+  background-color: rgb(41, 41, 48);
+}
+
+.t-and-c {
+  margin-top: -10px;
+  font-size: 0.9rem;
+  color: rgb(106, 114, 130);
+  text-align: center;
+}

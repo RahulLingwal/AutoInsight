@@ -7,12 +7,9 @@
 }
 
 body {
-  height: 10000px;
-  font-family: Arial, sans-serif;
-  background-color: rgb(10, 10, 10);
   color: white;
+  background-color: rgb(10, 10, 10);
   font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
-  scroll-behavior: smooth;
 }
 
 html {
@@ -48,7 +45,7 @@ html {
   height: 100%;
   border-radius: 20px;
   padding: 5px 0;
-  transition: background-color 0.15s;
+  transition: background-color 0.15s ease;
 }
 
 .navlist li:first-child {
@@ -117,14 +114,18 @@ html {
 }
 
 .navlist-items {
-  padding: 0.5rem 1.5rem;
-  border-radius: 15px;
-  font-weight: 500;
-  transition: background-color 0.15s;
   margin: 0 5px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+
+.navlist-items:hover {
+  background-color: rgb(42, 42, 50);
 }
 
 .navlist-items a {
+  padding: 0.5rem 1.5rem;
   font-weight: 500;
   text-decoration: none;
   font-size: 0.9rem;
@@ -135,10 +136,6 @@ html {
 
 .navlist li:first-child {
   background-color: rgb(26, 135, 255);
-}
-
-.navlist-items:hover {
-  background-color: rgb(42, 42, 50);
 }
 
 .navlist-items img {
@@ -152,6 +149,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: 10px;
 }
 
 .navbarButtons a {
@@ -160,7 +158,7 @@ html {
 
 .navbarButtons button {
   padding: 10px 20px;
-  border-radius: 15px;
+  border-radius: 20px;
   font-size: 0.92rem;
   font-weight: 500;
 
@@ -174,13 +172,17 @@ html {
   background-color: transparent;
   color: white;
   border: none;
+  transition: background-color 0.15s ease;
+}
+
+.logInButton:hover {
+  background-color: rgb(42, 42, 50);
 }
 
 .signUpButton {
   background-color: rgb(225, 0, 10);
   color: white;
   border: none;
-  transition: background-color 0.15s;
 }
 
 .hero-section {
@@ -466,7 +468,7 @@ html {
 hr {
   margin: 0 auto;
   width: 80%;
-  border-top: 1px solid rgb(84, 84, 84);
+  border-top: 1px solid rgb(52, 52, 52);
   border-bottom: none;
 }
 
@@ -500,7 +502,155 @@ hr {
 }
 
 .top-rated-cars {
-  margin: 3rem 0;
+  margin-top: 3rem;
+  margin-bottom: 10rem;
+}
+
+.join-us-container {
+  background: linear-gradient(90deg, rgb(12, 23, 34), rgb(10, 11, 12));
+  padding: 1rem 0;
+  margin-bottom: 5rem;
+}
+
+.join-us {
+  margin: 4rem;
+  padding: 3.5rem;
+  background-color: rgb(19, 20, 30);
+  border: 1px solid rgb(66, 67, 74);
+  border-radius: 20px;
+  box-shadow: 0 0 10px 7px rgb(14, 41, 65);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.join-us h4 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.join-us p {
+  text-align: center;
+  padding: 0 10rem;
+  letter-spacing: 1px;
+  color: rgb(209, 213, 220);
+  font-size: 1.3rem;
+}
+
+.join-us-buttons button {
+  padding: 20px 40px;
+  margin: 0 10px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.join-us-create-account-button {
+  background-color: transparent;
+  border: 1px solid rgb(53, 53, 59);
+  transition: all 0.15s ease;
+}
+
+.join-us-create-account-button:hover {
+  background-color: rgb(67, 67, 75);
+  border: 1px solid rgb(30, 144, 255);
+  box-shadow: 0 7px 10px rgb(23, 62, 107);
+}
+
+.join-us-write-review-button {
+  background-color: rgb(227, 0, 11);
+  border: 1px solid rgb(227, 0, 11);
+  transition: all 0.15s ease;
+}
+
+.join-us-write-review-button:hover {
+  box-shadow: 0 5px 15px rgb(183, 33, 41);
+}
+
+.footer {
+  padding: 3.5rem;
+  background: linear-gradient(
+    135deg,
+    rgb(20, 20, 29),
+    rgb(14, 14, 22) 40%,
+    rgb(11, 11, 16) 95%
+  );
+  border: 1px solid rgb(39, 39, 46);
+}
+
+.upper-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.upper-footer-section h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  padding-bottom: 1rem;
+}
+
+.upper-footer-section p {
+  color: rgb(120, 137, 143);
+  font-size: 0.9rem;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.upper-footer-section h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  padding-bottom: 1.5rem;
+}
+
+.footer-list {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.footer-list li {
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.footer-list li a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: rgb(161, 166, 181);
+  transition: color 0.15s ease;
+}
+
+.footer-list li a:hover {
+  color: rgb(30, 144, 255);
+}
+
+.footer-hr {
+  width: 95%;
+  margin: 2rem auto;
+}
+
+.lower-footer {
+  text-align: center;
+}
+
+.lower-footer p {
+  color: rgb(106, 114, 130);
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 /* ----------------- Latest Owner Review -------------------- */
