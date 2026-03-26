@@ -76,15 +76,15 @@ html {
 
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
   margin-right: 10px;
 }
 
 .AutoInsight div img {
-  width: 40px;
+  width: 30px;
 }
 
-.AutoInsight div p:first-child {
+.AutoInsight .AutoInsight div p:first-child {
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 1.2px;
