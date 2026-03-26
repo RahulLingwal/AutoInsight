@@ -378,6 +378,12 @@ html {
   border: 1px solid rgb(53, 53, 59);
   border-radius: 15px;
   cursor: pointer;
+  transition: transform 0.7s ease;
+  overflow: hidden;
+}
+
+.car-card:hover img {
+  transform: scale(1.025);
 }
 
 .car-img-container {
@@ -495,4 +501,190 @@ hr {
 
 .top-rated-cars {
   margin: 3rem 0;
+}
+
+/* ----------------- Latest Owner Review -------------------- */
+.review-container {
+  margin: auto;
+  max-width: 94vw;
+  padding: 5rem 1.6rem;
+}
+
+.review-head-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.review-head-flex img {
+  height: 40px;
+}
+
+.review-head-content p {
+  font-size: 1.125rem;
+  color: #99a1af;
+}
+
+.review-head-content {
+  margin-bottom: 2.5rem;
+}
+
+.review-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.review-card {
+  border: 1px solid rgb(53, 53, 59);
+  border-radius: 20px;
+  padding: 1.8rem;
+  background-color: rgba(20, 20, 30, 0.7);
+  transition: all 0.3s ease;
+}
+
+.shadow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 22px rgba(40, 60, 95, 0.3);
+}
+
+.card-head-flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.profile {
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: 2px solid rgb(8, 8, 105);
+}
+
+.profile img {
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.batch {
+  position: absolute;
+  background-color: #1277fd;
+  padding: 0.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  top: 40px;
+  right: -2px;
+}
+
+.batch img {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.review-head-container {
+  width: 100%;
+}
+
+.head-content-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.head-content-flex h4 {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.rating-flex {
+  display: flex;
+}
+
+.head-content-flex img {
+  margin-top: 0.8rem;
+}
+
+.review-head-container button {
+  background: none;
+  border: none;
+  color: #1b73ca;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.review-card h3 {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1.1rem;
+}
+
+.review-card p {
+  margin-bottom: 1.1rem;
+  line-height: 22px;
+  color: #99a1af;
+}
+
+.review-time-flex {
+  display: flex;
+  align-items: center;
+  color: #858c99;
+  font-size: 0.78rem;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.date-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.34rem;
+}
+
+.date-flex img {
+  width: 0.99rem;
+}
+
+.maintain-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #2a2a30;
+  padding-top: 1.5rem;
+  color: #858c99;
+  font-size: 0.78rem;
+}
+
+.maintain-flex .price {
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.maintain-flex button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #858c99;
+  background-color: #1d1d24;
+  padding: 0.6rem;
+  border: 1px solid #2a2a30;
+  border-radius: 15px;
+  width: 20%;
+}
+
+.maintain-flex button img {
+  width: 1rem;
 }
