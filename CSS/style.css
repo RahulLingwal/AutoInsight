@@ -184,7 +184,7 @@ html {
 }
 
 .hero-section {
-	height: 900px;
+	height: 800px;
 	width: auto;
 	padding-top: 220px;
 	background:
@@ -321,7 +321,7 @@ html {
 }
 
 .featured-cars {
-	margin-top: 3.2rem;
+  padding: 5rem 0;
 }
 
 .view-all {
@@ -377,7 +377,7 @@ html {
 .car-card {
 	border: 1px solid rgb(53, 53, 59);
 	border-radius: 15px;
-	height: 480px;
+  cursor: pointer;
 }
 
 .car-img-container {
@@ -396,7 +396,6 @@ html {
 }
 
 .car-description {
-	height: 60%;
 	padding: 1.5rem;
 	display: flex;
 	flex-direction: column;
@@ -458,9 +457,16 @@ html {
 	margin-right: 0.3rem;
 }
 
+hr {
+  margin: 0 auto;
+  width: 80%;
+  border-top: 1px solid rgb(84, 84, 84);
+  border-bottom: none;
+}
+
 .car-price {
-	height: 40%;
 	padding: 1.5rem;
+  margin-bottom: 2rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -479,11 +485,14 @@ html {
 }
 
 .view-details {
-	height: 70%;
-	padding: 5px 20px;
+	padding: 10px 20px;
 	background-color: rgb(16, 116, 253);
 	color: white;
 	border: none;
 	border-radius: 20px;
 	cursor: pointer;
+}
+
+.top-rated-cars {
+  margin: 3rem 0;
 }
