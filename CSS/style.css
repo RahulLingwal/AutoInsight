@@ -72,6 +72,7 @@ html {
   width: auto;
   background-color: rgb(0, 110, 255);
   border-radius: 15px;
+  box-shadow: 0 0 5px rgb(77, 126, 201);
 
   display: flex;
   align-items: center;
@@ -117,8 +118,10 @@ html {
 
 .navlist-items {
   padding: 0.5rem 1.5rem;
-  border-radius: 20px;
+  border-radius: 15px;
+  font-weight: 500;
   transition: background-color 0.15s;
+  margin: 0 5px;
 }
 
 .navlist-items a {
@@ -128,6 +131,10 @@ html {
   color: white;
   display: flex;
   align-items: center;
+}
+
+.navlist li:first-child {
+  background-color: rgb(26, 135, 255);
 }
 
 .navlist-items:hover {
@@ -177,7 +184,7 @@ html {
 }
 
 .hero-section {
-  height: 900px;
+  height: 800px;
   width: auto;
   padding-top: 220px;
   background:
@@ -314,7 +321,7 @@ html {
 }
 
 .featured-cars {
-  margin-top: 4.2rem;
+  padding: 5rem 0;
 }
 
 .view-all {
@@ -360,7 +367,132 @@ html {
 }
 
 .car-cardGrid {
+  margin-top: 2rem;
+  padding: 0 4rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.2rem;
+}
+
+.car-card {
+  border: 1px solid rgb(53, 53, 59);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.car-img-container {
+  height: 45%;
+}
+
+.car-img-container img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  width: 100%;
+  height: 100%;
+}
+
+.car-details {
+  height: 55%;
+}
+
+.car-description {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.car-description > div:first-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.car-name p:first-child {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.3rem;
+}
+
+.car-name p:last-child {
+  font-size: 0.9rem;
+  color: rgb(135, 161, 175);
+}
+
+.ratings {
+  height: 40px;
+  background-color: rgb(58, 44, 19);
+  border: 1px solid rgb(92, 69, 16);
+  border-radius: 20px;
+  padding: 0.5rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reviews {
+  font-size: 0.9rem;
+  color: rgb(153, 161, 175);
+}
+
+.fuel-and-capacity {
+  font-size: 0.9rem;
+  color: rgb(209, 213, 214);
+  display: flex;
+  justify-content: space-between;
+}
+
+.fuel,
+.seat-capacity,
+.reviews {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.fuel img,
+.seat-capacity img,
+.reviews img {
+  margin-right: 0.3rem;
+}
+
+hr {
+  margin: 0 auto;
+  width: 80%;
+  border-top: 1px solid rgb(84, 84, 84);
+  border-bottom: none;
+}
+
+.car-price {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cost p:first-child {
+  font-size: 0.9rem;
+  color: rgb(106, 114, 127);
+  margin-bottom: 5px;
+}
+
+.cost p:last-child {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(89, 162, 250);
+}
+
+.view-details {
+  padding: 10px 20px;
+  background-color: rgb(16, 116, 253);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.top-rated-cars {
+  margin: 3rem 0;
 }
