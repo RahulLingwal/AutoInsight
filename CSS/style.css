@@ -48,10 +48,6 @@ html {
 	transition: background-color 0.15s ease;
 }
 
-.navlist li:first-child {
-	background-color: blue;
-}
-
 .AutoInsight {
 	height: 100%;
 	text-decoration: none;
@@ -459,7 +455,7 @@ html {
 	margin-right: 0.3rem;
 }
 
-hr {
+.index-hr {
 	margin: 0 auto;
 	width: 80%;
 	border-top: 1px solid rgb(52, 52, 52);

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoInsight Log In / Sign Up</title>
+  <link rel="stylesheet" href="../CSS/signup.css">
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <div class="logo-wrapper">
+    <a class="logo" href="../HTML/index.html#home">
+      <img src="../Asset/Icons/car-ico.svg" alt="Logo Image">
+    </a>
+  </div>
+
+  <div class="join-and-create-account">
+    <h2>Join AutoInsight</h2>
+    <p>Create your account to get started</p>
+  </div>
+
+  <main class="form-wrapper">
+    <form action="" class="signupForm">
+      <div>
+        <label class="label-element" for="fullName">Full Name</label> <br>
+        <input class="input-element" id="fullName" type="text" placeholder="Piyush Shah" required>
+      </div>
+      <div>
+        <label class="label-element" for="email">Email Address</label> <br>
+        <input class="input-element" id="email" type="text" placeholder="abc@email.com" required>
+      </div>
+      <div>
+        <label class="label-element" for="number">Phone Number</label> <br>
+        <input class="input-element" id="number" type="text" placeholder="+91-******2029" required>
+      </div>
+      <div>
+        <label class="label-element" for="password">Password</label> <br>
+        <input class="input-element" id="password" type="text" placeholder="Create a strong password" required>
+      </div>
+      <div>
+        <label class="label-element" for="confirmPassword">Confirm Password</label> <br>
+        <input class="input-element" id="confirmPassword" type="text" placeholder="Confirm your password" required>
+      </div>
+      <div class="terms-and-conditions">
+        <input id="rememberMe" type="checkbox">
+        <label for="rememberMe">I agree to the <a href="">Terms Of Service</a> and <a href="">Privacy Policy</a></label>
+      </div>
+      <button class="create-account-btn">Create Account</button>
+
+      <hr class="form-horizontal-ruler">
+
+      <p class="other-sign-in-opt">Or sign up with</p>
+      <div class="social-media-btn">
+        <button>Google</button>
+        <button>Facebook</button>
+      </div>
+    </form>
+    <p class="switch">Already have an account? <a href="../HTML/logIn.html">Log In</a></p>
+  </main>
+  <script src="../JS/include.js"></script>
+</body>
+
+</html>
