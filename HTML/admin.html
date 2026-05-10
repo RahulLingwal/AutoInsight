@@ -23,26 +23,26 @@
 
             <nav class="sidebar-nav">
                 <div class="nav-item active" data-tab="dashboard">
-                    <img src="../Asset/Icons/profile.svg" alt="Dashboard" style="filter: invert(1);">
+                    <img src="../Asset/Icons/profile.svg" alt="Dashboard">
                     <span>Dashboard</span>
                 </div>
                 <div class="nav-item" data-tab="cars">
-                    <img src="../Asset/Icons/car-ico.svg" alt="Cars" style="filter: invert(1);">
+                    <img src="../Asset/Icons/car-ico.svg" alt="Cars">
                     <span>Manage Cars</span>
                 </div>
                 <div class="nav-item" data-tab="users">
-                    <img src="../Asset/Icons/profile.svg" alt="Users" style="filter: invert(1);">
+                    <img src="../Asset/Icons/profile.svg" alt="Users">
                     <span>Manage Users</span>
                 </div>
                 <div class="nav-item" data-tab="settings">
-                    <img src="../Asset/Icons/review.svg" alt="Settings" style="filter: invert(1);">
+                    <img src="../Asset/Icons/review.svg" alt="Settings">
                     <span>Profile & Settings</span>
                 </div>
             </nav>
 
             <div class="sidebar-footer">
-                <a href="../index.html" class="exit-link">
-                    <img src="../Asset/Icons/logout.svg" alt="Exit" style="filter: invert(1); width: 16px;">
+                <a href="../index.html" class="exit-link" id="admin-logout">
+                    <img src="../Asset/Icons/logout.svg" alt="Exit" style="width: 18px;">
                     Exit Admin Panel
                 </a>
             </div>
@@ -178,8 +178,12 @@
                                 <input type="email" id="admin-email-input" value="admin@autoinsight.com" readonly>
                             </div>
                             <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="text" placeholder="+1 (555) 123-4567">
+                                <label>Country</label>
+                                <input type="text" id="admin-country-input" placeholder="e.g. United States">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Bio</label>
+                                <textarea id="admin-bio-input" placeholder="Tell us about yourself..." style="height: 100px;"></textarea>
                             </div>
                         </div>
 

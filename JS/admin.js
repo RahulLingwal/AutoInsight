@@ -14,11 +14,50 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`${tabId}-tab`).classList.add('active');
 
             // Trigger specific loads
-            if (tabId === 'dashboard') loadDashboard();
-            if (tabId === 'cars') fetchCars();
-            if (tabId === 'users') fetchUsers();
+            if (tabId === 'settings') loadProfile();
         });
     });
+
+    // ── Profile Logic ───────────────────────────────────────────
+    const loadProfile = async () => {
+        const res = await fetch('../backend/profile/get_profile.php');
+        const data = await res.json();
+        if (data.success) {
+            const u = data.user;
+            document.getElementById('admin-name-input').value = u.name;
+            document.getElementById('admin-email-input').value = u.email;
+            document.getElementById('admin-country-input').value = u.country || '';
+            document.getElementById('admin-bio-input').value = u.bio || '';
+        }
+    };
+
+    const profileForm = document.getElementById('profile-form');
+    if (profileForm) {
+        profileForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const payload = {
+                name: document.getElementById('admin-name-input').value,
+                country: document.getElementById('admin-country-input').value,
+                bio: document.getElementById('admin-bio-input').value
+            };
+
+            const res = await fetch('../backend/profile/update_profile.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            if (data.success) {
+                alert('Profile updated successfully!');
+                const user = JSON.parse(sessionStorage.getItem('ai_user'));
+                user.name = payload.name;
+                sessionStorage.setItem('ai_user', JSON.stringify(user));
+                location.reload();
+            } else {
+                alert(data.message);
+            }
+        });
+    }
 
     // ── Dashboard Logic ───────────────────────────────────────────
     const loadDashboard = async () => {
