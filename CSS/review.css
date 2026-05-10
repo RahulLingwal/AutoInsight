@@ -19,7 +19,7 @@ body {
 }
 
 .review-page-header {
-	padding: 100px 250px 30px;
+	padding: 100px 15% 30px;
 	background-color: rgb(18, 18, 27);
 	border: 1px solid rgb(66, 66, 73);
 }
@@ -68,7 +68,6 @@ body {
 }
 
 .form-container {
-	width: 100vw;
 	padding: 3rem;
 }
 
@@ -199,4 +198,68 @@ body {
   font-size: 0.9rem;
   color: rgb(106, 114, 130);
   text-align: center;
+}
+
+/* Star Rating Styling */
+
+.rating-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 3rem;
+    color: rgb(53, 53, 59);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #ffc107;
+    text-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+}
+
+.rating-text {
+    margin-left: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: rgb(16, 116, 253);
+    min-width: 60px;
+}
+
+/* Polishing other elements */
+.review-form {
+    background-color: rgba(18, 18, 27, 0.8);
+    backdrop-filter: blur(20px);
+}
+
+.input-element {
+    transition: all 0.2s ease;
+}
+
+.input-element:hover {
+    border-color: rgb(16, 116, 253);
+}
+
+.input-element:focus {
+    background-color: rgb(35, 35, 45);
+    border-color: rgb(16, 116, 253);
+    box-shadow: 0 0 0 4px rgba(16, 116, 253, 0.2);
+    outline: none;
 }

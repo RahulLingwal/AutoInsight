@@ -130,8 +130,9 @@ html {
   align-items: center;
 }
 
-.navlist li:first-child {
+.navlist-items.active {
   background-color: rgb(26, 135, 255);
+  box-shadow: 0 0 15px rgba(26, 135, 255, 0.4);
 }
 
 .navlist-items img {
@@ -182,6 +183,10 @@ html {
 }
 
 /* ----------------------- Hero Section --------------------- */
+#header {
+    min-height: 80px;
+}
+
 .hero-section {
   height: 800px;
   width: auto;
@@ -464,10 +469,10 @@ html {
 }
 
 .index-hr {
-	margin: 0 auto;
-	width: 80%;
-	border-top: 1px solid rgb(52, 52, 52);
-	border-bottom: none;
+  margin: 0 auto;
+  width: 80%;
+  border-top: 1px solid rgb(52, 52, 52);
+  border-bottom: none;
 }
 
 .car-price {

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse All Cars - AutoInsight</title>
+    <link rel="shortcut icon" href="../Asset/Icons/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/cars.css">
+</head>
+<body>
+    <div id="header"></div>
+
+    <main class="cars-page-container">
+        <!-- Sidebar Filters -->
+        <aside class="filter-sidebar">
+            <div class="filter-header">
+                <img src="../Asset/Icons/search.svg" alt="Filter Icon">
+                <span>Filters</span>
+            </div>
+
+            <div class="filter-group">
+                <h4>Brand</h4>
+                <div class="filter-options">
+                    <label class="filter-item"><input type="checkbox"> Honda</label>
+                    <label class="filter-item"><input type="checkbox"> Hyundai</label>
+                    <label class="filter-item"><input type="checkbox"> Kia</label>
+                    <label class="filter-item"><input type="checkbox"> Mahindra</label>
+                    <label class="filter-item"><input type="checkbox"> Maruti</label>
+                    <label class="filter-item"><input type="checkbox"> Toyota</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h4>Price Range</h4>
+                <div class="filter-options">
+                    <label class="filter-item"><input type="radio" name="price" checked> All Prices</label>
+                    <label class="filter-item"><input type="radio" name="price"> Under ₹10L</label>
+                    <label class="filter-item"><input type="radio" name="price"> ₹10L - ₹20L</label>
+                    <label class="filter-item"><input type="radio" name="price"> ₹20L - ₹30L</label>
+                    <label class="filter-item"><input type="radio" name="price"> Above ₹30L</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h4>Fuel Type</h4>
+                <div class="filter-options">
+                    <label class="filter-item"><input type="checkbox"> Petrol</label>
+                    <label class="filter-item"><input type="checkbox"> Diesel</label>
+                    <label class="filter-item"><input type="checkbox"> Electric</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h4>Body Type</h4>
+                <div class="filter-options">
+                    <label class="filter-item"><input type="checkbox"> Sedan</label>
+                    <label class="filter-item"><input type="checkbox"> SUV</label>
+                    <label class="filter-item"><input type="checkbox"> Hatchback</label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="cars-content">
+            <header class="content-header">
+                <h1>Browse All Cars</h1>
+                <p>Showing <span>8</span> of 8 cars</p>
+            </header>
+
+            <div class="cars-grid">
+                <!-- Car Card 1 -->
+                <article class="car-card">
+                    <span class="featured-badge">Featured</span>
+                    <div class="car-img-wrapper">
+                        <img src="../Asset/Images/porsche.jpg" alt="Honda City">
+                    </div>
+                    <div class="car-info">
+                        <div class="car-title-row">
+                            <h3>Honda City</h3>
+                            <div class="rating-badge">
+                                <img src="../Asset/Icons/star.png" alt="Star"> 4.5
+                            </div>
+                        </div>
+                        <p class="model-year">2024 Model</p>
+                        
+                        <div class="reviews" style="margin-bottom: 1rem; color: #87a1af; font-size: 0.9rem; display: flex; align-items: center; gap: 5px;">
+                            <img src="../Asset/Icons/review-chat.svg" style="width: 16px;"> 234 reviews
+                        </div>
+
+                        <div class="car-stats">
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/fuel.svg" alt="Fuel"> Petrol
+                            </div>
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/people.svg" alt="Seats"> 5 Seats
+                            </div>
+                        </div>
+
+                        <div class="car-footer">
+                            <div class="price-box">
+                                <p>Starting from</p>
+                                <p class="price">₹12.0L</p>
+                            </div>
+                            <button class="view-btn">View Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Car Card 2 -->
+                <article class="car-card">
+                    <span class="featured-badge">Featured</span>
+                    <div class="car-img-wrapper">
+                        <img src="../Asset/Images/rr.jpg" alt="Hyundai Creta">
+                    </div>
+                    <div class="car-info">
+                        <div class="car-title-row">
+                            <h3>Hyundai Creta</h3>
+                            <div class="rating-badge">
+                                <img src="../Asset/Icons/star.png" alt="Star"> 4.7
+                            </div>
+                        </div>
+                        <p class="model-year">2024 Model</p>
+
+                        <div class="reviews" style="margin-bottom: 1rem; color: #87a1af; font-size: 0.9rem; display: flex; align-items: center; gap: 5px;">
+                            <img src="../Asset/Icons/review-chat.svg" style="width: 16px;"> 412 reviews
+                        </div>
+
+                        <div class="car-stats">
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/fuel.svg" alt="Fuel"> Diesel
+                            </div>
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/people.svg" alt="Seats"> 5 Seats
+                            </div>
+                        </div>
+
+                        <div class="car-footer">
+                            <div class="price-box">
+                                <p>Starting from</p>
+                                <p class="price">₹14.5L</p>
+                            </div>
+                            <button class="view-btn">View Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Car Card 3 -->
+                <article class="car-card">
+                    <span class="featured-badge">Featured</span>
+                    <div class="car-img-wrapper">
+                        <img src="../Asset/Images/gwagon.jpg" alt="Maruti Swift">
+                    </div>
+                    <div class="car-info">
+                        <div class="car-title-row">
+                            <h3>Maruti Swift</h3>
+                            <div class="rating-badge">
+                                <img src="../Asset/Icons/star.png" alt="Star"> 4.3
+                            </div>
+                        </div>
+                        <p class="model-year">2023 Model</p>
+
+                        <div class="reviews" style="margin-bottom: 1rem; color: #87a1af; font-size: 0.9rem; display: flex; align-items: center; gap: 5px;">
+                            <img src="../Asset/Icons/review-chat.svg" style="width: 16px;"> 567 reviews
+                        </div>
+
+                        <div class="car-stats">
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/fuel.svg" alt="Fuel"> Petrol
+                            </div>
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/people.svg" alt="Seats"> 5 Seats
+                            </div>
+                        </div>
+
+                        <div class="car-footer">
+                            <div class="price-box">
+                                <p>Starting from</p>
+                                <p class="price">₹8.5L</p>
+                            </div>
+                            <button class="view-btn">View Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Car Card 4 -->
+                <article class="car-card">
+                    <div class="car-img-wrapper">
+                        <img src="../Asset/Images/audi.jpg" alt="Tata Nexon">
+                    </div>
+                    <div class="car-info">
+                        <div class="car-title-row">
+                            <h3>Tata Nexon</h3>
+                            <div class="rating-badge">
+                                <img src="../Asset/Icons/star.png" alt="Star"> 4.6
+                            </div>
+                        </div>
+                        <p class="model-year">2024 Model</p>
+
+                        <div class="reviews" style="margin-bottom: 1rem; color: #87a1af; font-size: 0.9rem; display: flex; align-items: center; gap: 5px;">
+                            <img src="../Asset/Icons/review-chat.svg" style="width: 16px;"> 389 reviews
+                        </div>
+
+                        <div class="car-stats">
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/fuel.svg" alt="Fuel"> Electric
+                            </div>
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/people.svg" alt="Seats"> 5 Seats
+                            </div>
+                        </div>
+
+                        <div class="car-footer">
+                            <div class="price-box">
+                                <p>Starting from</p>
+                                <p class="price">₹11.0L</p>
+                            </div>
+                            <button class="view-btn">View Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Car Card 5 -->
+                <article class="car-card">
+                    <div class="car-img-wrapper">
+                        <img src="../Asset/Images/bentley.jpg" alt="Kia Seltos">
+                    </div>
+                    <div class="car-info">
+                        <div class="car-title-row">
+                            <h3>Kia Seltos</h3>
+                            <div class="rating-badge">
+                                <img src="../Asset/Icons/star.png" alt="Star"> 4.8
+                            </div>
+                        </div>
+                        <p class="model-year">2024 Model</p>
+
+                        <div class="reviews" style="margin-bottom: 1rem; color: #87a1af; font-size: 0.9rem; display: flex; align-items: center; gap: 5px;">
+                            <img src="../Asset/Icons/review-chat.svg" style="width: 16px;"> 298 reviews
+                        </div>
+
+                        <div class="car-stats">
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/fuel.svg" alt="Fuel"> Petrol
+                            </div>
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/people.svg" alt="Seats"> 5 Seats
+                            </div>
+                        </div>
+
+                        <div class="car-footer">
+                            <div class="price-box">
+                                <p>Starting from</p>
+                                <p class="price">₹15.5L</p>
+                            </div>
+                            <button class="view-btn">View Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Car Card 6 -->
+                <article class="car-card">
+                    <div class="car-img-wrapper">
+                        <img src="../Asset/Images/mercedes.jpg" alt="Toyota Fortuner">
+                    </div>
+                    <div class="car-info">
+                        <div class="car-title-row">
+                            <h3>Toyota Fortuner</h3>
+                            <div class="rating-badge">
+                                <img src="../Asset/Icons/star.png" alt="Star"> 4.7
+                            </div>
+                        </div>
+                        <p class="model-year">2023 Model</p>
+
+                        <div class="reviews" style="margin-bottom: 1rem; color: #87a1af; font-size: 0.9rem; display: flex; align-items: center; gap: 5px;">
+                            <img src="../Asset/Icons/review-chat.svg" style="width: 16px;"> 156 reviews
+                        </div>
+
+                        <div class="car-stats">
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/fuel.svg" alt="Fuel"> Diesel
+                            </div>
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/people.svg" alt="Seats"> 7 Seats
+                            </div>
+                        </div>
+
+                        <div class="car-footer">
+                            <div class="price-box">
+                                <p>Starting from</p>
+                                <p class="price">₹35.0L</p>
+                            </div>
+                            <button class="view-btn">View Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Car Card 7 -->
+                <article class="car-card">
+                    <div class="car-img-wrapper">
+                        <img src="../Asset/Images/defender.jpg" alt="Mahindra XUV700">
+                    </div>
+                    <div class="car-info">
+                        <div class="car-title-row">
+                            <h3>Mahindra XUV700</h3>
+                            <div class="rating-badge">
+                                <img src="../Asset/Icons/star.png" alt="Star"> 4.6
+                            </div>
+                        </div>
+                        <p class="model-year">2024 Model</p>
+
+                        <div class="reviews" style="margin-bottom: 1rem; color: #87a1af; font-size: 0.9rem; display: flex; align-items: center; gap: 5px;">
+                            <img src="../Asset/Icons/review-chat.svg" style="width: 16px;"> 423 reviews
+                        </div>
+
+                        <div class="car-stats">
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/fuel.svg" alt="Fuel"> Diesel
+                            </div>
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/people.svg" alt="Seats"> 7 Seats
+                            </div>
+                        </div>
+
+                        <div class="car-footer">
+                            <div class="price-box">
+                                <p>Starting from</p>
+                                <p class="price">₹18.5L</p>
+                            </div>
+                            <button class="view-btn">View Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Car Card 8 -->
+                <article class="car-card">
+                    <div class="car-img-wrapper">
+                        <img src="../Asset/Images/bmw.jpg" alt="Volkswagen Virtus">
+                    </div>
+                    <div class="car-info">
+                        <div class="car-title-row">
+                            <h3>Volkswagen Virtus</h3>
+                            <div class="rating-badge">
+                                <img src="../Asset/Icons/star.png" alt="Star"> 4.4
+                            </div>
+                        </div>
+                        <p class="model-year">2024 Model</p>
+
+                        <div class="reviews" style="margin-bottom: 1rem; color: #87a1af; font-size: 0.9rem; display: flex; align-items: center; gap: 5px;">
+                            <img src="../Asset/Icons/review-chat.svg" style="width: 16px;"> 187 reviews
+                        </div>
+
+                        <div class="car-stats">
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/fuel.svg" alt="Fuel"> Petrol
+                            </div>
+                            <div class="stat-item">
+                                <img src="../Asset/Icons/people.svg" alt="Seats"> 5 Seats
+                            </div>
+                        </div>
+
+                        <div class="car-footer">
+                            <div class="price-box">
+                                <p>Starting from</p>
+                                <p class="price">₹13.5L</p>
+                            </div>
+                            <button class="view-btn">View Details</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="upper-footer">
+            <div class="upper-footer-section">
+                <h3>AutoInsight</h3>
+                <p>India's most trusted car review and community platform</p>
+            </div>
+            <div class="upper-footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-list" style="list-style: none; padding: 0;">
+                    <li><a href="index.html" style="color: #78898f; text-decoration: none;">Home</a></li>
+                    <li><a href="cars.html" style="color: white; text-decoration: none; font-weight: bold;">Browse Cars</a></li>
+                    <li><a href="review.html" style="color: #78898f; text-decoration: none;">Write Review</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="index-hr" style="margin: 2rem 0; opacity: 0.1;">
+        <div class="lower-footer" style="text-align: center; color: #78898f; font-size: 0.9rem;">
+            <p>&copy; 2026 AutoInsight. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../JS/include.js"></script>
+</body>
+</html>

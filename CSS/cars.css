@@ -1,0 +1,294 @@
+/* Cars Page Specific Styles */
+
+.cars-page-container {
+    display: flex;
+    gap: 2rem;
+    padding: 100px 4rem 4rem; /* Adjusted for fixed navbar */
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Sidebar Styling */
+.filter-sidebar {
+    flex: 0 0 300px;
+    background-color: rgb(18, 18, 27);
+    border: 1px solid rgb(53, 53, 59);
+    border-radius: 20px;
+    padding: 2rem;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.filter-header img {
+    width: 24px;
+}
+
+.filter-group {
+    margin-bottom: 2rem;
+}
+
+.filter-group h4 {
+    color: rgb(153, 161, 175);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.2rem;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    color: rgb(209, 213, 220);
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.filter-item:hover {
+    color: white;
+}
+
+.filter-item input[type="checkbox"],
+.filter-item input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgb(66, 67, 74);
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.filter-item input[type="radio"] {
+    border-radius: 50%;
+}
+
+.filter-item input:checked {
+    background-color: rgb(16, 116, 253);
+    border-color: rgb(16, 116, 253);
+}
+
+.filter-item input:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.filter-item input[type="radio"]:checked::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+/* Main Content Area */
+.cars-content {
+    flex: 1;
+}
+
+.content-header {
+    margin-bottom: 2.5rem;
+}
+
+.content-header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.content-header p {
+    color: rgb(153, 161, 175);
+    font-size: 1.1rem;
+}
+
+.content-header span {
+    color: rgb(16, 116, 253);
+    font-weight: bold;
+}
+
+/* Car Grid */
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* Car Card Enhancement */
+.car-card {
+    background-color: rgb(18, 18, 27);
+    border: 1px solid rgb(53, 53, 59);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.car-card:hover {
+    transform: translateY(-10px);
+    border-color: rgb(16, 116, 253);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.featured-badge {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background-color: rgb(227, 0, 11);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(227, 0, 11, 0.3);
+}
+
+.car-img-wrapper {
+    height: 220px;
+    overflow: hidden;
+}
+
+.car-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.car-card:hover .car-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.car-info {
+    padding: 1.5rem;
+}
+
+.car-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.car-title-row h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+}
+
+.rating-badge {
+    background-color: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgb(255, 193, 7);
+    color: rgb(255, 193, 7);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rating-badge img {
+    width: 14px;
+}
+
+.model-year {
+    color: rgb(135, 161, 175);
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+}
+
+.car-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgb(53, 53, 59);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgb(153, 161, 175);
+    font-size: 0.9rem;
+}
+
+.stat-item img {
+    width: 18px;
+    opacity: 0.7;
+}
+
+.car-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-box p:first-child {
+    font-size: 0.8rem;
+    color: rgb(153, 161, 175);
+    margin-bottom: 2px;
+}
+
+.price-box .price {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: rgb(16, 116, 253);
+}
+
+.view-btn {
+    background-color: rgb(16, 116, 253);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+    background-color: rgb(13, 100, 220);
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .cars-page-container {
+        flex-direction: column;
+        padding: 100px 2rem 2rem;
+    }
+    
+    .filter-sidebar {
+        flex: none;
+        width: 100%;
+        position: static;
+    }
+}
