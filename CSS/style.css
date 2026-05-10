@@ -23,163 +23,193 @@ html {
 }
 
 .navbar {
-  height: 70px;
-  padding: 0 3.5rem;
-  background-color: rgb(18, 18, 27);
+  height: 80px;
+  padding: 0 4rem;
+  background-color: rgba(18, 18, 27, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: white;
-  border: 1px solid rgb(91, 91, 91);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .navigation-bar-logo {
-  height: 100%;
-  border-radius: 20px;
-  padding: 5px 0;
-  transition: background-color 0.15s ease;
+  display: flex;
+  align-items: center;
 }
 
 .AutoInsight {
-  height: 100%;
   text-decoration: none;
   color: white;
-  padding: 0 15px;
-
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0.2rem;
+  gap: 12px;
 }
 
 .AutoInsight div:first-child {
-  height: 80%;
-  width: auto;
   background-color: rgb(0, 110, 255);
-  border-radius: 15px;
-  box-shadow: 0 0 5px rgb(77, 126, 201);
-
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 110, 255, 0.3);
   display: flex;
   align-items: center;
-  padding: 10px;
-  margin-right: 10px;
+  justify-content: center;
+  padding: 8px;
 }
 
 .AutoInsight div img {
-  width: 30px;
+  width: 24px;
+  height: 24px;
 }
 
-.AutoInsight .AutoInsight div p:first-child {
-  font-size: 1.1rem;
+.AutoInsight .brand-text p:first-child {
+  font-size: 1.25rem;
   font-weight: 800;
-  letter-spacing: 1.2px;
-  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
-.AutoInsight div p:last-child {
-  font-size: 0.7rem;
-  font-weight: bold;
-  color: rgb(181, 181, 181);
+.AutoInsight .brand-text p:last-child {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.3px;
 }
 
 .navigation-bar {
-  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .navlist {
-  padding: 0 20px;
-  height: 100%;
-  list-style-type: none;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-}
-
-.navlist li {
-  display: flex;
-  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
 }
 
 .navlist-items {
-  margin: 0 5px;
-  border-radius: 20px;
-  font-weight: 500;
-  transition: background-color 0.15s ease;
+  border-radius: 12px;
+  transition: all 0.2s ease;
 }
 
 .navlist-items:hover {
-  background-color: rgb(42, 42, 50);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .navlist-items a {
-  padding: 0.5rem 1.5rem;
-  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
   text-decoration: none;
-  font-size: 0.9rem;
-  color: white;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+
+.navlist-items a:hover {
+  color: white;
 }
 
 .navlist-items.active {
-  background-color: rgb(26, 135, 255);
-  box-shadow: 0 0 15px rgba(26, 135, 255, 0.4);
+  background-color: rgba(26, 135, 255, 0.15);
+  color: rgb(26, 135, 255);
+}
+
+.navlist-items.active a {
+  color: rgb(26, 135, 255);
 }
 
 .navlist-items img {
-  width: 1.2rem;
-  margin-right: 5px;
-  vertical-align: middle;
+  width: 18px;
+  opacity: 0.8;
+}
+
+.navlist-items.active img {
+  filter: invert(48%) sepia(96%) saturate(1469%) hue-rotate(195deg) brightness(101%) contrast(101%);
+  opacity: 1;
+}
+
+/* Specific styling for Write Review CTA in Nav (removed solid blue, now follows active pattern) */
+.write-review-btn {
+  margin-left: 10px;
+}
+
+.write-review-btn a {
+  /* Inherits standard navlink styles */
+}
+
+.write-review-btn img {
+  /* Inherits standard icon styles */
+}
+
+/* Ensure the active state is consistent across all items */
+.navlist-items.active {
+  background-color: rgba(26, 135, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(26, 135, 255, 0.1);
+}
+
+.navlist-items.active a {
+  color: rgb(26, 135, 255);
+}
+
+.navlist-items.active img {
+  filter: invert(48%) sepia(96%) saturate(1469%) hue-rotate(195deg) brightness(101%) contrast(101%);
+  opacity: 1;
 }
 
 .navbarButtons {
-  height: 100%;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
-}
-
-.navbarButtons a {
-  text-decoration: none;
+  gap: 15px;
 }
 
 .navbarButtons button {
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 0.92rem;
-  font-weight: 500;
-
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.2rem;
-  cursor: pointer;
+  gap: 8px;
+  transition: all 0.2s ease;
 }
 
 .logInButton {
   background-color: transparent;
   color: white;
-  border: none;
-  transition: background-color 0.15s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .logInButton:hover {
-  background-color: rgb(42, 42, 50);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .signUpButton {
   background-color: rgb(225, 0, 10);
   color: white;
   border: none;
+  box-shadow: 0 4px 15px rgba(225, 0, 10, 0.3);
+}
+
+.signUpButton:hover {
+  background-color: rgb(255, 0, 12);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(225, 0, 10, 0.4);
 }
 
 /* ----------------------- Hero Section --------------------- */

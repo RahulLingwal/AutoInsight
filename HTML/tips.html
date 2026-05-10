@@ -17,7 +17,7 @@
                 <h1>Tips & Problems</h1>
                 <p>Share maintenance tips and discuss car problems with the community</p>
             </div>
-            <button class="create-post-btn">
+            <button class="create-post-btn" id="open-modal-btn">
                 <span>+</span> Create Post
             </button>
         </header>
@@ -65,7 +65,7 @@
                         <span class="tag"># Savings</span>
                     </div>
                     <div class="post-actions">
-                        <div class="action-item">
+                        <div class="action-item toggle-comments">
                             <img src="../Asset/Icons/review-chat.svg" alt="Comments">
                             89 Comments
                         </div>
@@ -76,6 +76,45 @@
                         <div class="action-item">
                             <img src="../Asset/Icons/review.svg" alt="Save">
                             Save
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <div class="comments-header">
+                        <img src="../Asset/Icons/chat.svg" alt="Chat Icon">
+                        <h3>Comments (2)</h3>
+                    </div>
+
+                    <div class="comments-list">
+                        <!-- Comment 1 -->
+                        <div class="comment-card">
+                            <div class="comment-user-info">
+                                <img src="../Asset/Images/person1.jpg" alt="User" class="user-avatar">
+                                <span class="username">David Kim</span>
+                                <span class="post-date">9 Mar 2024</span>
+                            </div>
+                            <p class="comment-text">I had the exact same issue! Turns out it was a faulty sensor. Got it replaced and problem solved.</p>
+                        </div>
+
+                        <!-- Comment 2 -->
+                        <div class="comment-card">
+                            <div class="comment-user-info">
+                                <img src="../Asset/Images/person1.jpg" alt="User" class="user-avatar">
+                                <span class="username">Lisa Anderson</span>
+                                <span class="post-date">10 Mar 2024</span>
+                            </div>
+                            <p class="comment-text">Have you checked your brake fluid levels? Low fluid can sometimes cause similar symptoms.</p>
+                        </div>
+                    </div>
+
+                    <div class="comment-input-area">
+                        <div class="comment-input-wrapper">
+                            <textarea class="comment-textarea" placeholder="Write a comment..."></textarea>
+                            <div class="comment-footer">
+                                <button class="post-comment-btn">Post Comment</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,6 +229,56 @@
         </div>
     </footer>
 
+    <!-- Create Post Modal -->
+    <div class="modal-overlay" id="post-modal-overlay">
+        <div class="post-modal">
+            <header class="modal-header">
+                <div class="modal-header-text">
+                    <h2>Create New Post</h2>
+                    <p>Share a tip or report a problem with the community</p>
+                </div>
+                <button class="close-modal" id="close-modal-x">&times;</button>
+            </header>
+
+            <form class="modal-form">
+                <div class="form-group">
+                    <label>Post Type</label>
+                    <div class="type-toggles">
+                        <button type="button" class="type-btn active tip" data-type="tip">
+                            💡 Tip
+                        </button>
+                        <button type="button" class="type-btn problem" data-type="problem">
+                            ⚠️ Problem
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="post-title">Title</label>
+                    <input type="text" id="post-title" class="modal-input" placeholder="Share your helpful tip..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="post-desc">Description</label>
+                    <textarea id="post-desc" class="modal-textarea" placeholder="Explain your tip in detail. Include steps, tools needed, and any helpful advice..." required></textarea>
+                    <p class="form-help">Provide as much detail as possible to help other community members.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="post-tags">Tags</label>
+                    <input type="text" id="post-tags" class="modal-input" placeholder="e.g., Honda Civic, Engine, Oil Change (comma separated)">
+                    <p class="form-help">Add relevant tags to help others find your post. Separate tags with commas.</p>
+                </div>
+
+                <footer class="modal-footer">
+                    <button type="submit" class="publish-btn">Publish Post</button>
+                    <button type="button" class="cancel-modal-btn" id="close-modal-btn">Cancel</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+    <script src="../JS/tips.js"></script>
     <script src="../JS/include.js"></script>
 </body>
 </html>

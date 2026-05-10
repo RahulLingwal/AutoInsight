@@ -23,7 +23,8 @@
     </div>
 
     <main class="form-wrapper">
-      <form action="" class="signupForm">
+      <div id="auth-error" class="auth-error" style="display:none;"></div>
+      <form id="signupForm" class="signupForm">
         <div>
           <label class="label-element" for="fullName">Full Name</label> <br />
           <input
@@ -84,7 +85,7 @@
             <a href="">Privacy Policy</a></label
           >
         </div>
-        <button class="create-account-btn">Create Account</button>
+        <button type="submit" class="create-account-btn" id="signup-submit-btn">Create Account</button>
 
         <hr class="form-horizontal-ruler" />
 
@@ -98,6 +99,60 @@
         Already have an account? <a href="login.html">Log In</a>
       </p>
     </main>
+
+    <style>
+      .auth-error { background: rgba(220,53,69,0.12); border: 1px solid rgb(220,53,69); color: #ff6b7a; padding: 0.9rem 1.2rem; border-radius: 10px; margin-bottom: 1rem; font-size: 0.95rem; }
+      .auth-success { background: rgba(40,167,69,0.12); border: 1px solid #28a745; color: #5cb85c; padding: 0.9rem 1.2rem; border-radius: 10px; margin-bottom: 1rem; font-size: 0.95rem; }
+    </style>
+
+    <script>
+      document.getElementById('signupForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const errorBox = document.getElementById('auth-error');
+        const btn = document.getElementById('signup-submit-btn');
+
+        const name     = document.getElementById('fullName').value.trim();
+        const email    = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirm  = document.getElementById('confirmPassword').value.trim();
+        const agreed   = document.getElementById('rememberMe').checked;
+
+        // Client-side validation
+        if (!agreed) { showError('Please accept the Terms of Service.'); return; }
+        if (password !== confirm) { showError('Passwords do not match.'); return; }
+        if (password.length < 6)  { showError('Password must be at least 6 characters.'); return; }
+
+        btn.textContent = 'Creating Account...';
+        btn.disabled = true;
+
+        try {
+          const res  = await fetch('../backend/auth/register.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            sessionStorage.setItem('ai_user', JSON.stringify(data.user));
+            window.location.href = '../index.html';
+          } else {
+            showError(data.message);
+          }
+        } catch (err) {
+          showError('Server error. Make sure XAMPP is running.');
+        } finally {
+          btn.textContent = 'Create Account';
+          btn.disabled = false;
+        }
+
+        function showError(msg) {
+          errorBox.textContent = msg;
+          errorBox.style.display = 'block';
+          errorBox.className = 'auth-error';
+        }
+      });
+    </script>
     <script src="../JS/include.js"></script>
   </body>
 </html>

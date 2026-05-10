@@ -18,7 +18,7 @@
                     <h1>Community Forum</h1>
                     <p>Connect with car enthusiasts, ask questions, and share knowledge</p>
                 </div>
-                <button class="new-discussion-btn">
+                <button class="new-discussion-btn" id="new-discussion-btn">
                     <span>+</span> New Discussion
                 </button>
             </header>
@@ -86,7 +86,7 @@
                     </p>
                     <div class="discussion-footer">
                         <div class="discussion-stats">
-                            <div class="stat-item">
+                            <div class="stat-item toggle-replies">
                                 <img src="../Asset/Icons/review-chat.svg" alt="Replies">
                                 34 replies
                             </div>
@@ -97,7 +97,78 @@
                         </div>
                         <span class="last-activity">Last activity: 2 hours ago</span>
                     </div>
+
+                    <!-- Replies Section -->
+                    <div class="replies-section">
+                        <div class="replies-header">
+                            <img src="../Asset/Icons/review-chat.svg" alt="Replies Icon">
+                            <h3>Replies (4)</h3>
+                        </div>
+
+                        <div class="replies-list">
+                            <!-- Reply 1 -->
+                            <div class="reply-card">
+                                <div class="reply-user-info">
+                                    <img src="../Asset/Images/person1.jpg" alt="User" class="user-avatar">
+                                    <span class="username">John Peterson</span>
+                                    <span class="discussion-date">
+                                        <img src="../Asset/Icons/date.svg" alt="Date" style="width:13px;">
+                                        2024-03-08
+                                    </span>
+                                </div>
+                                <p class="reply-text">I would definitely recommend test driving both vehicles in similar conditions. The Camry is known for its reliability, but the Accord has better handling in my experience.</p>
+                            </div>
+
+                            <!-- Reply 2 -->
+                            <div class="reply-card">
+                                <div class="reply-user-info">
+                                    <img src="../Asset/Images/person1.jpg" alt="User" class="user-avatar">
+                                    <span class="username">Maria Garcia</span>
+                                    <span class="discussion-date">
+                                        <img src="../Asset/Icons/date.svg" alt="Date" style="width:13px;">
+                                        2024-03-09
+                                    </span>
+                                </div>
+                                <p class="reply-text">Both are excellent choices! I own a 2023 Camry and have had zero issues. The hybrid version gets amazing fuel economy if that matters to you.</p>
+                            </div>
+
+                            <!-- Reply 3 -->
+                            <div class="reply-card">
+                                <div class="reply-user-info">
+                                    <img src="../Asset/Images/person1.jpg" alt="User" class="user-avatar">
+                                    <span class="username">Kevin Zhang</span>
+                                    <span class="discussion-date">
+                                        <img src="../Asset/Icons/date.svg" alt="Date" style="width:13px;">
+                                        2024-03-09
+                                    </span>
+                                </div>
+                                <p class="reply-text">Have you looked at the Mazda6? It's often overlooked but offers a great balance of reliability and driving dynamics at a competitive price point.</p>
+                            </div>
+
+                            <!-- Reply 4 -->
+                            <div class="reply-card">
+                                <div class="reply-user-info">
+                                    <img src="../Asset/Images/person1.jpg" alt="User" class="user-avatar">
+                                    <span class="username">Rachel Brown</span>
+                                    <span class="discussion-date">
+                                        <img src="../Asset/Icons/date.svg" alt="Date" style="width:13px;">
+                                        2024-03-10
+                                    </span>
+                                </div>
+                                <p class="reply-text">The Accord's infotainment system is more intuitive than the Camry's in my opinion. Also check out the safety ratings - both score well but there are some differences in standard features.</p>
+                            </div>
+                        </div>
+
+                        <!-- Reply Input -->
+                        <div class="reply-input-wrapper">
+                            <textarea class="reply-textarea" placeholder="Write a reply..."></textarea>
+                            <div class="reply-footer">
+                                <button class="post-reply-btn">Post Reply</button>
+                            </div>
+                        </div>
+                    </div>
                 </article>
+
 
                 <!-- Discussion 2 -->
                 <article class="discussion-card">
@@ -182,6 +253,50 @@
         </div>
     </footer>
 
+    <!-- New Discussion Modal -->
+    <div class="modal-overlay" id="discussion-modal-overlay">
+        <div class="post-modal">
+            <header class="modal-header">
+                <div class="modal-header-text">
+                    <h2>Start New Discussion</h2>
+                    <p>Share your thoughts with the community</p>
+                </div>
+                <button class="close-modal" id="close-discussion-x">&times;</button>
+            </header>
+
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="discussion-title">Discussion Title</label>
+                    <input type="text" id="discussion-title" class="modal-input" placeholder="What's your question or topic?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="discussion-category">Category</label>
+                    <select id="discussion-category" class="modal-input" style="appearance: auto;" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="buying-advice">Buying Advice</option>
+                        <option value="car-comparison">Car Comparison</option>
+                        <option value="electric-vehicles">Electric Vehicles</option>
+                        <option value="safety">Safety</option>
+                        <option value="general">General Discussion</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="discussion-desc">Description</label>
+                    <textarea id="discussion-desc" class="modal-textarea" placeholder="Share your thoughts, questions, or experiences..." required></textarea>
+                    <p class="form-help">Be clear and descriptive. Add as much detail as possible to help others understand your question.</p>
+                </div>
+
+                <footer class="modal-footer">
+                    <button type="submit" class="publish-btn" style="background-color: #00c853;">Post Discussion</button>
+                    <button type="button" class="cancel-modal-btn" id="close-discussion-btn">Cancel</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+    <script src="../JS/community.js"></script>
     <script src="../JS/include.js"></script>
 </body>
 </html>

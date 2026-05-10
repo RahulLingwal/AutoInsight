@@ -293,3 +293,331 @@
         padding: 120px 1.5rem 2rem;
     }
 }
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 1rem;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Modal Content */
+.post-modal {
+    background: linear-gradient(145deg, rgb(25, 25, 35) 0%, rgb(15, 15, 22) 100%);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    padding: 2.5rem;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .post-modal {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.modal-header-text h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+    color: white;
+}
+
+.modal-header-text p {
+    color: rgb(153, 161, 175);
+    font-size: 0.95rem;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: rgb(153, 161, 175);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.close-modal:hover {
+    color: white;
+}
+
+/* Modal Form */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Inputs */
+.modal-input, .modal-textarea {
+    background-color: rgb(22, 23, 32);
+    border: 1px solid rgb(53, 53, 59);
+    border-radius: 12px;
+    padding: 1rem;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.modal-input:focus, .modal-textarea:focus {
+    border-color: rgb(16, 116, 253);
+}
+
+.modal-textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.form-help {
+    font-size: 0.8rem;
+    color: rgb(135, 161, 175);
+    margin-top: -0.4rem;
+    line-height: 1.4;
+}
+
+/* Modal Footer */
+.modal-footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.publish-btn {
+    flex: 2;
+    background-color: rgb(40, 167, 69);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.publish-btn:hover {
+    background-color: rgb(35, 145, 60);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.cancel-modal-btn {
+    flex: 1;
+    background-color: rgb(32, 33, 42);
+    color: white;
+    border: 1px solid rgb(53, 53, 59);
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-modal-btn:hover {
+    background-color: rgb(42, 43, 52);
+}
+
+@media (max-width: 600px) {
+    .post-modal {
+        padding: 1.5rem;
+    }
+}
+
+/* ===================== Replies Section ===================== */
+
+.toggle-replies {
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(16, 116, 253, 0.5);
+    padding-bottom: 2px;
+    transition: color 0.2s ease;
+    user-select: none;
+}
+
+.toggle-replies:hover {
+    color: rgb(16, 116, 253);
+}
+
+.replies-section {
+    display: none;
+    border-top: 1px solid rgb(42, 42, 50);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+.replies-section.active {
+    display: block;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.replies-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.replies-header img {
+    width: 20px;
+    filter: invert(48%) sepia(96%) saturate(1469%) hue-rotate(195deg) brightness(101%) contrast(101%);
+}
+
+.replies-header h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: white;
+}
+
+/* Reply Cards */
+.replies-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+}
+
+.reply-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 3px solid rgb(16, 116, 253);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.reply-card:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.reply-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.reply-user-info .user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(16, 116, 253, 0.3);
+}
+
+.reply-user-info .username {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white;
+}
+
+.reply-user-info .discussion-date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: rgb(135, 161, 175);
+    font-size: 0.82rem;
+}
+
+.reply-text {
+    color: rgb(153, 161, 175);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Reply Input */
+.reply-input-wrapper {
+    background-color: rgba(22, 23, 32, 0.7);
+    border: 1px solid rgb(53, 53, 59);
+    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.reply-textarea {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.97rem;
+    resize: none;
+    min-height: 80px;
+    outline: none;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.reply-textarea::placeholder {
+    color: rgb(75, 85, 99);
+}
+
+.reply-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-reply-btn {
+    background-color: #00c853;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
+}
+
+.post-reply-btn:hover {
+    background-color: #00a844;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 200, 83, 0.4);
+}

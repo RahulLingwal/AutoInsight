@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honda City 2024 - AutoInsight</title>
+    <meta name="description" content="Detailed specifications, features, pros & cons and owner reviews for Honda City 2024.">
+    <link rel="shortcut icon" href="../Asset/Icons/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/car-details.css">
+</head>
+<body>
+    <div id="header"></div>
+
+    <div class="details-page-wrapper">
+
+        <!-- Back Button -->
+        <a href="cars.html" class="back-link">
+            <span>&#8249;</span> Back to Cars
+        </a>
+
+        <!-- ========= Hero Card ========= -->
+        <section class="car-hero-card">
+
+            <!-- Left: Image Gallery -->
+            <div class="gallery-col">
+                <div class="main-image-wrapper">
+                    <img id="main-car-img" src="../Asset/Images/porsche.jpg" alt="Honda City" class="main-car-img">
+                </div>
+                <div class="thumbnail-strip">
+                    <img src="../Asset/Images/porsche.jpg" alt="Thumb 1" class="thumb active" onclick="setMain(this)">
+                    <img src="../Asset/Images/rr.jpg"      alt="Thumb 2" class="thumb" onclick="setMain(this)">
+                    <img src="../Asset/Images/gwagon.jpg"  alt="Thumb 3" class="thumb" onclick="setMain(this)">
+                </div>
+            </div>
+
+            <!-- Right: Info Panel -->
+            <div class="info-col">
+
+                <!-- Title + Rating -->
+                <div class="car-title-area">
+                    <div>
+                        <h1 class="car-name">Honda City</h1>
+                        <p class="car-sub">Honda City &bull; 2024 Model</p>
+                    </div>
+                    <div class="rating-chip">
+                        <img src="../Asset/Icons/star.png" alt="Star">
+                        <span class="rating-val">4.5</span>
+                        <span class="review-count">234 reviews</span>
+                    </div>
+                </div>
+
+                <!-- Price -->
+                <div class="price-block">
+                    <p class="price-label">STARTING PRICE</p>
+                    <p class="price-big">₹12.00 Lakhs</p>
+                </div>
+
+                <!-- Quick Specs Grid -->
+                <div class="quick-specs">
+                    <div class="spec-chip">
+                        <span class="spec-label">FUEL TYPE</span>
+                        <div class="spec-val">
+                            <img src="../Asset/Icons/fuel.svg" alt="Fuel">
+                            Petrol
+                        </div>
+                    </div>
+                    <div class="spec-chip">
+                        <span class="spec-label">MILEAGE</span>
+                        <div class="spec-val">
+                            <img src="../Asset/Icons/speedometer.svg" alt="Mileage">
+                            17.8 km/l
+                        </div>
+                    </div>
+                    <div class="spec-chip">
+                        <span class="spec-label">SEATING</span>
+                        <div class="spec-val">
+                            <img src="../Asset/Icons/people.svg" alt="Seats">
+                            5 Seats
+                        </div>
+                    </div>
+                    <div class="spec-chip">
+                        <span class="spec-label">SAFETY</span>
+                        <div class="spec-val">
+                            <img src="../Asset/Icons/shield.svg" alt="Safety">
+                            5 Stars
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="cta-buttons">
+                    <a href="review.html" class="cta-primary">Write a Review</a>
+                    <button class="cta-secondary">Compare</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= Tabs Section ========= -->
+        <section class="tabs-section">
+            <div class="tab-bar">
+                <button class="tab-btn active" data-tab="specs">Specifications &amp; Features</button>
+                <button class="tab-btn" data-tab="reviews">Owner Reviews (1)</button>
+            </div>
+
+            <!-- Tab: Specs -->
+            <div class="tab-panel active" id="tab-specs">
+
+                <!-- Spec Tables -->
+                <div class="spec-tables">
+                    <!-- Engine -->
+                    <div class="spec-table-block">
+                        <h3 class="spec-section-title">
+                            <img src="../Asset/Icons/speedometer.svg" alt="Engine"> Engine &amp; Performance
+                        </h3>
+                        <table class="spec-table">
+                            <tr><td>Engine</td><td class="val">1.5L i-VTEC</td></tr>
+                            <tr><td>Transmission</td><td class="val">Automatic</td></tr>
+                            <tr><td>Mileage</td><td class="val">17.8 km/l</td></tr>
+                            <tr><td>Fuel Type</td><td class="val">Petrol</td></tr>
+                        </table>
+                    </div>
+
+                    <!-- Dimensions -->
+                    <div class="spec-table-block">
+                        <h3 class="spec-section-title">
+                            <img src="../Asset/Icons/people.svg" alt="Dims"> Dimensions &amp; Capacity
+                        </h3>
+                        <table class="spec-table">
+                            <tr><td>Body Type</td><td class="val">Sedan</td></tr>
+                            <tr><td>Seating Capacity</td><td class="val">5 Seats</td></tr>
+                            <tr><td>Safety Rating</td><td class="val">5 Stars</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pros & Cons -->
+                <div class="pros-cons">
+                    <div class="pros-card">
+                        <h4>&#128077; Pros</h4>
+                        <ul>
+                            <li>&#10003; Excellent fuel efficiency</li>
+                            <li>&#10003; Spacious interior</li>
+                            <li>&#10003; Reliable engine</li>
+                            <li>&#10003; Good resale value</li>
+                        </ul>
+                    </div>
+                    <div class="cons-card">
+                        <h4>&#128078; Cons</h4>
+                        <ul>
+                            <li>&#10007; Road noise at high speeds</li>
+                            <li>&#10007; Limited boot space</li>
+                            <li>&#10007; Basic infotainment system</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Owner Reviews -->
+            <div class="tab-panel" id="tab-reviews">
+                <div class="reviews-header-row">
+                    <div class="avg-rating-block">
+                        <span class="avg-number">4.5</span>
+                        <div class="stars-row">
+                            <img src="../Asset/Icons/star.png" alt="★">
+                            <img src="../Asset/Icons/star.png" alt="★">
+                            <img src="../Asset/Icons/star.png" alt="★">
+                            <img src="../Asset/Icons/star.png" alt="★">
+                            <img src="../Asset/Icons/star.png" alt="★">
+                        </div>
+                        <p>Based on 234 reviews</p>
+                    </div>
+                </div>
+
+                <!-- Review Cards -->
+                <div class="review-list">
+                    <div class="review-card">
+                        <div class="review-top">
+                            <img src="../Asset/Images/person1.jpg" alt="User" class="review-avatar">
+                            <div>
+                                <h5>Rahul Sharma</h5>
+                                <p class="review-meta">Owner &bull; Purchased Jan 2024</p>
+                            </div>
+                            <div class="review-stars">
+                                <img src="../Asset/Icons/star.png" alt="★">
+                                <img src="../Asset/Icons/star.png" alt="★">
+                                <img src="../Asset/Icons/star.png" alt="★">
+                                <img src="../Asset/Icons/star.png" alt="★">
+                                <img src="../Asset/Icons/star.png" alt="★">
+                            </div>
+                        </div>
+                        <h4 class="review-title">Best sedan in this budget!</h4>
+                        <p class="review-body">I've been using my Honda City for 6 months now and I absolutely love it. The fuel efficiency is exceptional and the ride quality is superb on highways. Highly recommended for daily commuters.</p>
+                    </div>
+                </div>
+
+                <!-- Write Review CTA -->
+                <div class="write-review-cta">
+                    <p>Share your experience with this car</p>
+                    <a href="review.html" class="cta-primary">Write a Review</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Thumbnail gallery switcher
+        function setMain(thumb) {
+            document.getElementById('main-car-img').src = thumb.src;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+        }
+
+        // Tab switcher
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+
+    <script src="../JS/include.js"></script>
+</body>
+</html>

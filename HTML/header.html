@@ -11,13 +11,9 @@
       <div class="navigation-bar-logo">
         <a class="AutoInsight" href="index.html">
           <div>
-            <img
-              class="icons"
-              src="../Asset/Icons/car-ico.svg"
-              alt="Logo Image"
-            />
+            <img class="icons" src="../Asset/Icons/car-ico.svg" alt="Logo" />
           </div>
-          <div>
+          <div class="brand-text">
             <p>AutoInsight</p>
             <p>Car Reviews & Community</p>
           </div>
@@ -28,73 +24,91 @@
         <ul class="navlist">
           <li class="navlist-items">
             <a href="index.html">
-              <img
-                class="icons"
-                src="../Asset/Icons/home.svg"
-                alt="Home Icon"
-              />
-              <p>Home</p>
+              <img class="icons" src="../Asset/Icons/home.svg" alt="Home" />
+              Home
             </a>
           </li>
           <li class="navlist-items">
             <a href="../HTML/cars.html">
-              <img
-                class="icons"
-                src="../Asset/Icons/car-ico.svg"
-                alt="Car Icon"
-              />
-              <p>Cars</p>
+              <img class="icons" src="../Asset/Icons/car-ico.svg" alt="Cars" />
+              Cars
             </a>
           </li>
           <li class="navlist-items">
             <a href="../HTML/tips.html">
-              <img
-                class="icons"
-                src="../Asset/Icons/tips.svg"
-                alt="Tips Icon"
-              />
-              <p>Tips&Problems</p>
+              <img class="icons" src="../Asset/Icons/tips.svg" alt="Tips" />
+              Tips&Problems
             </a>
           </li>
           <li class="navlist-items">
             <a href="../HTML/community.html">
-              <img
-                class="icons"
-                src="../Asset/Icons/chat.svg"
-                alt="Community Icon"
-              />
-              <p>Community</p>
+              <img class="icons" src="../Asset/Icons/chat.svg" alt="Community" />
+              Community
             </a>
           </li>
-          <li class="navlist-items">
+          <li class="navlist-items write-review-btn">
             <a href="../HTML/review.html">
-              <img
-                class="icons"
-                src="../Asset/Icons/review.svg"
-                alt="Review Icon"
-              />
-              <p>Write Review</p>
+              <img class="icons" src="../Asset/Icons/review.svg" alt="Review" />
+              Write Review
             </a>
           </li>
         </ul>
       </div>
 
-      <div class="navbarButtons">
-        <a href="../HTML/login.html">
-          <button class="logInButton">
-            <img
-              class="icons"
-              src="../Asset/Icons/profile.svg"
-              alt="Log In Button"
-            />
-            Log In
-          </button>
-        </a>
+      <!-- Auth buttons -->
+      <div class="navbarButtons" id="navbar-auth">
+        <!-- Logged OUT -->
+        <div id="nav-logged-out" style="display:flex; gap:12px;">
+          <a href="../HTML/login.html" style="text-decoration:none;">
+            <button class="logInButton">
+              <img class="icons" src="../Asset/Icons/profile.svg" alt="Log In" />
+              Log In
+            </button>
+          </a>
+          <a href="../HTML/signup.html" style="text-decoration:none;">
+            <button class="signUpButton">Sign Up</button>
+          </a>
+        </div>
 
-        <a href="../HTML/signup.html">
-          <button class="signUpButton">Sign Up</button>
-        </a>
+        <!-- Logged IN -->
+        <div id="nav-logged-in" style="display:none; align-items:center; gap:1.2rem;">
+          <span id="nav-user-name" style="color:white; font-weight:700; font-size:0.95rem; border-right:1px solid rgba(255,255,255,0.1); padding-right:1rem;"></span>
+          <button class="logInButton" id="nav-logout-btn" style="border:none; cursor:pointer; color: #ff6b7a;">
+            Logout
+          </button>
+        </div>
       </div>
     </nav>
-  </body>
-</html>
+
+    <script>
+      // Auth State Management
+      const initAuth = () => {
+        const user = JSON.parse(sessionStorage.getItem('ai_user') || 'null');
+        const loggedOut = document.getElementById('nav-logged-out');
+        const loggedIn  = document.getElementById('nav-logged-in');
+        const userName  = document.getElementById('nav-user-name');
+
+        if (user && loggedOut && loggedIn && userName) {
+          loggedOut.style.display = 'none';
+          loggedIn.style.display  = 'flex';
+          userName.textContent    = user.name;
+        }
+      };
+
+      initAuth();
+
+      // Logout handler
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', async () => {
+          try {
+            const isRoot = !window.location.pathname.includes('/HTML/');
+            const path   = isRoot ? 'backend/auth/logout.php' : '../backend/auth/logout.php';
+            await fetch(path, { method: 'POST' });
+          } catch (e) {}
+          
+          sessionStorage.removeItem('ai_user');
+          window.location.href = window.location.pathname.includes('/HTML/') ? '../index.html' : 'index.html';
+        });
+      }
+    </script>

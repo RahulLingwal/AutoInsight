@@ -1,0 +1,452 @@
+/* car-details.css */
+:root {
+    --primary-blue: rgb(16, 116, 253);
+    --bg-dark: rgb(10, 11, 14);
+    --card-bg: rgba(22, 23, 30, 0.8);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-muted: rgb(135, 161, 175);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: white;
+}
+
+.details-page-wrapper {
+    max-width: 1200px;
+    margin: 100px auto 4rem;
+    padding: 0 1.5rem;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: white;
+}
+
+/* Hero Card */
+.car-hero-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 2.5rem;
+    display: flex;
+    gap: 3rem;
+    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
+}
+
+.gallery-col {
+    flex: 1.2;
+}
+
+.main-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16/10;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--primary-blue);
+    box-shadow: 0 0 20px rgba(16, 116, 253, 0.2);
+    margin-bottom: 1rem;
+}
+
+.main-car-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail-strip {
+    display: flex;
+    gap: 12px;
+}
+
+.thumb {
+    width: 100px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.6;
+    transition: all 0.2s;
+}
+
+.thumb:hover {
+    opacity: 0.8;
+}
+
+.thumb.active {
+    border-color: var(--primary-blue);
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(16, 116, 253, 0.3);
+}
+
+.info-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Title Area */
+.car-title-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.car-name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+}
+
+.car-sub {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.rating-chip {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.rating-chip img {
+    width: 20px;
+}
+
+.rating-val {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #ffc107;
+}
+
+.review-count {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Price Block */
+.price-block {
+    background: linear-gradient(90deg, rgba(16, 116, 253, 0.1) 0%, rgba(16, 116, 253, 0) 100%);
+    border: 1px solid rgba(16, 116, 253, 0.3);
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+}
+
+.price-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+}
+
+.price-big {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: white;
+}
+
+/* Quick Specs */
+.quick-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.spec-chip {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.spec-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.spec-val {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.spec-val img {
+    width: 22px;
+    filter: brightness(0) invert(1) opacity(0.8);
+}
+
+/* CTA Buttons */
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.cta-primary {
+    flex: 1;
+    background: var(--primary-blue);
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(16, 116, 253, 0.3);
+}
+
+.cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 116, 253, 0.4);
+}
+
+.cta-secondary {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Tabs */
+.tabs-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.tab-bar {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2.5rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 1rem 0;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.tab-btn.active {
+    color: var(--primary-blue);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-blue);
+    border-radius: 2px 2px 0 0;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Spec Tables */
+.spec-tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+}
+
+.spec-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.spec-section-title img {
+    width: 24px;
+    filter: invert(48%) sepia(96%) saturate(1469%) hue-rotate(195deg);
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.spec-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.spec-table td {
+    padding: 1rem 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.spec-table td.val {
+    text-align: right;
+    color: white;
+    font-weight: 700;
+}
+
+/* Pros & Cons */
+.pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.pros-card, .cons-card {
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.pros-card {
+    background: rgba(0, 200, 83, 0.05);
+    border: 1px solid rgba(0, 200, 83, 0.1);
+}
+
+.cons-card {
+    background: rgba(220, 53, 69, 0.05);
+    border: 1px solid rgba(220, 53, 69, 0.1);
+}
+
+.pros-card h4 { color: #00c853; margin-bottom: 1.2rem; font-size: 1.2rem; }
+.cons-card h4 { color: #dc3545; margin-bottom: 1.2rem; font-size: 1.2rem; }
+
+.pros-cons ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pros-cons li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Reviews Tab specific */
+.avg-rating-block {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.avg-number {
+    font-size: 4rem;
+    font-weight: 900;
+    display: block;
+}
+
+.stars-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin: 1rem 0;
+}
+
+.stars-row img { width: 20px; }
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.review-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: 16px;
+}
+
+.review-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.review-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.review-stars {
+    margin-left: auto;
+    display: flex;
+    gap: 2px;
+}
+
+.review-stars img { width: 14px; }
+
+.review-title {
+    margin-bottom: 0.5rem;
+}
+
+.review-body {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+    .car-hero-card { flex-direction: column; }
+    .spec-tables { grid-template-columns: 1fr; gap: 2rem; }
+    .pros-cons { grid-template-columns: 1fr; }
+}

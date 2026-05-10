@@ -16,9 +16,10 @@
         <h1>Welcome Back</h1>
         <p>Sign in to your AutoInsight account</p>
     </header>
+    <div id="auth-error" style="display:none; max-width:420px; margin: 0 auto 1rem; background:rgba(220,53,69,0.12); border:1px solid rgb(220,53,69); color:#ff6b7a; padding:0.9rem 1.2rem; border-radius:10px; font-size:0.95rem;"></div>
 
     <main class="login-card">
-        <form class="login-form">
+        <form class="login-form" id="loginForm">
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <div class="input-wrapper">
@@ -43,7 +44,7 @@
                 <a href="#" class="forgot-password">Forgot password?</a>
             </div>
 
-            <button type="submit" class="sign-in-btn">Sign In</button>
+            <button type="submit" id="login-submit-btn" class="sign-in-btn">Sign In</button>
 
             <div class="divider">or continue with</div>
 
@@ -65,14 +66,56 @@
     </footer>
 
     <script>
-        // Simple password toggle logic
+        // Password toggle
         const toggle = document.querySelector('.password-toggle');
         const passwordInput = document.querySelector('#password');
-        
         toggle.addEventListener('click', () => {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             toggle.textContent = type === 'password' ? '👁' : '🙈';
+        });
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const errorBox = document.getElementById('auth-error');
+            const btn      = document.getElementById('login-submit-btn');
+            const email    = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!email || !password) {
+                showError('Please enter your email and password.');
+                return;
+            }
+
+            btn.textContent = 'Signing In...';
+            btn.disabled = true;
+
+            try {
+                const res  = await fetch('../backend/auth/login.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    sessionStorage.setItem('ai_user', JSON.stringify(data.user));
+                    window.location.href = '../index.html';
+                } else {
+                    showError(data.message);
+                }
+            } catch (err) {
+                showError('Server error. Make sure XAMPP is running.');
+            } finally {
+                btn.textContent = 'Sign In';
+                btn.disabled = false;
+            }
+
+            function showError(msg) {
+                errorBox.textContent = msg;
+                errorBox.style.display = 'block';
+            }
         });
     </script>
 </body>

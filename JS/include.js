@@ -63,9 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Highlight Write Review link (which is in navlist-items)
                     if (currentPage === "review.html" && linkHref.includes("review.html")) {
                         link.parentElement.classList.add("active");
-                        // Add specific style for the review link if needed
-                        link.parentElement.style.backgroundColor = "rgb(26, 135, 255)";
-                        link.parentElement.style.boxShadow = "0 0 15px rgba(26, 135, 255, 0.4)";
+
+
+
                     }
 
                     // Highlight Login/Signup buttons if we are on those pages
