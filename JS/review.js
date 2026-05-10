@@ -12,7 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const autoCarName = urlParams.get('car_name');
 
     if (autoCarName) {
-        document.getElementById('car-name-input').value = autoCarName;
+        const parts = autoCarName.split(' ');
+        if (parts.length >= 2) {
+            document.getElementById('car-brand-input').value = parts[0];
+            document.getElementById('car-model-input').value = parts.slice(1).join(' ');
+        } else {
+            document.getElementById('car-brand-input').value = autoCarName;
+        }
     }
 
     if (editId) {
@@ -25,7 +31,15 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 if (data.success) {
                     const r = data.review;
-                    document.getElementById('car-name-input').value = r.car_name;
+                    // Attempt to split if it was stored as single string previously
+                    const parts = (r.car_name || "").split(' ');
+                    if (parts.length >= 2) {
+                        document.getElementById('car-brand-input').value = parts[0];
+                        document.getElementById('car-model-input').value = parts.slice(1).join(' ');
+                    } else {
+                        document.getElementById('car-brand-input').value = r.car_name;
+                    }
+
                     document.getElementById('review-title').value = r.review_title || r.title;
                     document.getElementById('review-description').value = r.review_description || r.body;
                     
@@ -85,7 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = {
             edit_id: editId,
             car_id: autoCarId,
-            car_name: formData.get('car_name'),
+            car_brand: formData.get('car_brand'),
+            car_model: formData.get('car_model'),
+            car_name: formData.get('car_brand') + ' ' + formData.get('car_model'),
             rating: formData.get('rating'),
             title: formData.get('review_title'),
             body: formData.get('review_description'),

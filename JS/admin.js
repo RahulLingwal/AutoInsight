@@ -155,20 +155,23 @@ document.addEventListener("DOMContentLoaded", () => {
         carForm.cons.value = car.cons || "";
         carForm.description.value = car.description || "";
         carForm.is_featured.checked = car.is_featured == 1;
-        carForm.image_path.value = car.image_path || "";
-        carForm.image2.value = car.image2 || "";
-        carForm.image3.value = car.image3 || "";
-        carForm.image4.value = car.image4 || "";
+        
+        // Note: You cannot set the value of <input type="file"> for security.
+        // The backend will keep old images if no new ones are uploaded.
 
         carModal.classList.add('active');
     };
 
     window.deleteCar = async (id) => {
         if (!confirm('Are you sure you want to delete this car?')) return;
+        
+        const formData = new FormData();
+        formData.append('action', 'delete');
+        formData.append('id', id);
+
         const res = await fetch('../backend/cars/manage_car.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ action: 'delete', id })
+            body: formData
         });
         const data = await res.json();
         if (data.success) fetchCars();
@@ -187,19 +190,19 @@ document.addEventListener("DOMContentLoaded", () => {
     carForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(carForm);
-        const payload = Object.fromEntries(formData.entries());
-        payload.action = 'save';
-        payload.is_featured = carForm.is_featured.checked ? 1 : 0;
+        formData.append('action', 'save');
+        formData.append('is_featured', carForm.is_featured.checked ? 1 : 0);
 
         const res = await fetch('../backend/cars/manage_car.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(payload)
+            body: formData
         });
         const data = await res.json();
         if (data.success) {
             carModal.classList.remove('active');
             fetchCars();
+        } else {
+            alert(data.message);
         }
     });
 
@@ -246,10 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Logout
-    document.getElementById('admin-logout')?.addEventListener('click', () => {
-        sessionStorage.removeItem('ai_user');
-        window.location.href = 'login.html';
-    });
 
     // Initial load
     loadDashboard();

@@ -23,13 +23,24 @@ if (empty($carName) || $rating < 1 || $rating > 5 || empty($title) || empty($bod
 $db = getDB();
 
 // 1. Find Car ID
-$carId = (int) ($data['car_id'] ?? 0);
+$carId   = (int) ($data['car_id'] ?? 0);
+$brand   = trim($data['car_brand'] ?? '');
+$model   = trim($data['car_model'] ?? '');
+
 if (!$carId) {
-    // Fuzzy search only if no explicit ID provided
-    $stmt = $db->prepare("SELECT id FROM cars WHERE CONCAT(brand, ' ', model) LIKE ? LIMIT 1");
-    $stmt->execute(['%' . $carName . '%']);
+    // Try to find by exact brand + model first
+    $stmt = $db->prepare("SELECT id FROM cars WHERE brand = ? AND model = ? LIMIT 1");
+    $stmt->execute([$brand, $model]);
     $car = $stmt->fetch();
-    if ($car) $carId = $car['id'];
+    if ($car) {
+        $carId = $car['id'];
+    } else {
+        // Fallback to fuzzy full name match
+        $stmt = $db->prepare("SELECT id FROM cars WHERE CONCAT(brand, ' ', model) LIKE ? LIMIT 1");
+        $stmt->execute(['%' . $carName . '%']);
+        $car = $stmt->fetch();
+        if ($car) $carId = $car['id'];
+    }
 }
 if (!$carId) $carId = null;
 

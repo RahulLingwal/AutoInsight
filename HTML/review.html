@@ -21,19 +21,17 @@
     <div class="form-container">
       <form action="" class="review-form">
         <div>
-          <label class="label-element" for="car-name-input"
-            >SELECT YOUR CAR <span class="superscript-element">*</span></label
-          >
-          <br />
-          <input
-            class="input-element"
-            type="text"
-            name="car_name"
-            id="car-name-input"
-            list="cars-datalist"
-            placeholder="Type your car name..."
-            required
-          />
+                <div class="form-section">
+                    <label class="label-element">SELECT YOUR CAR <span class="superscript-element">*</span></label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <input class="input-element" type="text" id="car-brand-input" name="car_brand" placeholder="Brand (e.g., Hyundai)" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="input-element" type="text" id="car-model-input" name="car_model" placeholder="Model (e.g., Creta)" required>
+                        </div>
+                    </div>
+                </div>
           <datalist id="cars-datalist">
             <!-- Cars will be loaded here dynamically -->
           </datalist>

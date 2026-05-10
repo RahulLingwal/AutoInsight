@@ -41,7 +41,7 @@
             </nav>
 
             <div class="sidebar-footer">
-                <a href="../index.html" class="exit-link" id="admin-logout">
+                <a href="../index.html" class="exit-link">
                     <img src="../Asset/Icons/logout.svg" alt="Exit" style="width: 18px;">
                     Exit Admin Panel
                 </a>
@@ -308,20 +308,20 @@
                         <textarea name="description" placeholder="Enter detailed description of the car..." style="height:120px;"></textarea>
                     </div>
                     <div class="form-group full-width">
-                        <label>Main Image Path (relative to root)</label>
-                        <input type="text" name="image_path" placeholder="Asset/Images/cars/main.jpg" value="Asset/Images/porsche.jpg">
+                        <label>Main Image</label>
+                        <input type="file" name="image_main" accept="image/*">
                     </div>
                     <div class="form-group full-width">
-                        <label>Thumbnail 2 Path (Side/Profile)</label>
-                        <input type="text" name="image2" placeholder="Asset/Images/cars/side.jpg">
+                        <label>Thumbnail 2 (Side/Profile)</label>
+                        <input type="file" name="image_side" accept="image/*">
                     </div>
                     <div class="form-group full-width">
-                        <label>Thumbnail 3 Path (Interior)</label>
-                        <input type="text" name="image3" placeholder="Asset/Images/cars/interior.jpg">
+                        <label>Thumbnail 3 (Interior)</label>
+                        <input type="file" name="image_interior" accept="image/*">
                     </div>
                     <div class="form-group full-width">
-                        <label>Thumbnail 4 Path (Rear)</label>
-                        <input type="text" name="image4" placeholder="Asset/Images/cars/rear.jpg">
+                        <label>Thumbnail 4 (Rear)</label>
+                        <input type="file" name="image_rear" accept="image/*">
                     </div>
                 </div>
 
