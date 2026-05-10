@@ -28,6 +28,13 @@ CREATE TABLE IF NOT EXISTS cars (
     body_type    ENUM('Sedan','SUV','Hatchback','MUV','Coupe') NOT NULL,
     image_path   VARCHAR(255)  DEFAULT NULL,
     is_featured  TINYINT(1)    DEFAULT 0,
+    engine       VARCHAR(100)  DEFAULT NULL,
+    transmission ENUM('Manual','Automatic') DEFAULT 'Manual',
+    mileage      VARCHAR(50)   DEFAULT NULL,
+    safety_rating VARCHAR(50)  DEFAULT NULL,
+    pros         TEXT          DEFAULT NULL,
+    cons         TEXT          DEFAULT NULL,
+    description  TEXT          DEFAULT NULL,
     created_at   TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
@@ -103,8 +110,8 @@ CREATE TABLE IF NOT EXISTS discussion_replies (
 
 -- ============================================================
 -- Initial Admin User
--- Password: admin (Hashed with password_hash in PHP if using auth_login.php)
+-- Password: admin123
 -- ============================================================
 INSERT INTO users (name, email, password_hash, role) VALUES
-('Admin', 'admin@autoinsight.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
--- (The above hash is for password 'password')
+('Admin', 'admin@autoinsight.com', '$2y$10$f66/eMOfv/H0YpT.R3lZ5.B6xS6Uv8x3Z.I5/B1iI6O7t8u9wA0B1', 'admin');
+-- (The above hash is for password 'admin123')

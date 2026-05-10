@@ -101,7 +101,11 @@
 
                 if (data.success) {
                     sessionStorage.setItem('ai_user', JSON.stringify(data.user));
-                    window.location.href = '../index.html';
+                    if (data.user.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.href = '../index.html';
+                    }
                 } else {
                     showError(data.message);
                 }

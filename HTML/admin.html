@@ -4,83 +4,243 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - AutoInsight</title>
+    <link rel="shortcut icon" href="../Asset/Icons/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/admin.css">
 </head>
-<body>
-    <div id="header"></div>
-
-    <main class="admin-container">
-        <header class="admin-header">
-            <h1>Admin Dashboard</h1>
-            <p>Manage your car catalogue and site content</p>
-        </header>
-
-        <section class="admin-stats">
-            <div class="stat-card">
-                <h3>Total Cars</h3>
-                <p id="stat-cars">...</p>
-            </div>
-            <div class="stat-card">
-                <h3>Total Reviews</h3>
-                <p id="stat-reviews">...</p>
-            </div>
-            <div class="stat-card">
-                <h3>Total Users</h3>
-                <p id="stat-users">...</p>
-            </div>
-        </section>
-
-        <!-- Manage Cars Section -->
-        <section class="manage-cars-section">
-            <div class="section-header">
-                <h2>Manage Car Catalogue</h2>
-                <button class="add-btn" id="open-add-modal">+ Add New Car</button>
+<body class="admin-page-body">
+    
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-brand">
+                <img src="../Asset/Icons/car-ico.svg" alt="Logo">
+                <div>
+                    <h2>AutoInsight</h2>
+                    <p>Admin Panel</p>
+                </div>
             </div>
 
-            <div class="admin-table-wrapper">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Image</th>
-                            <th>Brand</th>
-                            <th>Model</th>
-                            <th>Year</th>
-                            <th>Price (Lakh)</th>
-                            <th>Fuel</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cars-table-body">
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-tab="dashboard">
+                    <img src="../Asset/Icons/profile.svg" alt="Dashboard" style="filter: invert(1);">
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item" data-tab="cars">
+                    <img src="../Asset/Icons/car-ico.svg" alt="Cars" style="filter: invert(1);">
+                    <span>Manage Cars</span>
+                </div>
+                <div class="nav-item" data-tab="users">
+                    <img src="../Asset/Icons/profile.svg" alt="Users" style="filter: invert(1);">
+                    <span>Manage Users</span>
+                </div>
+                <div class="nav-item" data-tab="settings">
+                    <img src="../Asset/Icons/review.svg" alt="Settings" style="filter: invert(1);">
+                    <span>Profile & Settings</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../index.html" class="exit-link">
+                    <img src="../Asset/Icons/logout.svg" alt="Exit" style="filter: invert(1); width: 16px;">
+                    Exit Admin Panel
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Tab -->
+            <section id="dashboard-tab" class="tab-content active">
+                <div class="tab-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome back, Admin! Here's how the platform is performing today.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon car"><img src="../Asset/Icons/car-ico.svg" style="filter: invert(1); width:20px;"></div>
+                        <div class="stat-info">
+                            <h3 id="stat-cars">0</h3>
+                            <p>Total Cars Listed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon user"><img src="../Asset/Icons/profile.svg" style="filter: invert(1); width:20px;"></div>
+                        <div class="stat-info">
+                            <h3 id="stat-users">0</h3>
+                            <p>Total Users</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon review"><img src="../Asset/Icons/review.svg" style="filter: invert(1); width:20px;"></div>
+                        <div class="stat-info">
+                            <h3 id="stat-reviews">0</h3>
+                            <p>Total Reviews</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon post"><img src="../Asset/Icons/review-chat.svg" style="filter: invert(1); width:20px;"></div>
+                        <div class="stat-info">
+                            <h3 id="stat-posts">0</h3>
+                            <p>Community Posts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-section">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list" id="activity-feed">
                         <!-- Loaded via JS -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
+                        <div class="loading-state">Loading activity...</div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Add/Edit Car Modal -->
-    <div class="modal" id="car-modal">
-        <div class="modal-content">
-            <h2 id="modal-title">Add New Car</h2>
-            <form id="car-form">
+            <!-- Cars Tab -->
+            <section id="cars-tab" class="tab-content">
+                <div class="tab-header" style="display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <h1>Manage Car Catalogue</h1>
+                        <p>Add, edit, or remove vehicles from the platform.</p>
+                    </div>
+                    <button class="add-btn" id="open-add-car">+ Add New Car</button>
+                </div>
+
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Vehicle</th>
+                                <th>Price</th>
+                                <th>Fuel & Body</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cars-table-body">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Users Tab -->
+            <section id="users-tab" class="tab-content">
+                <div class="tab-header">
+                    <h1>User Management</h1>
+                    <p>View and manage registered users and their roles.</p>
+                </div>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Joined Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <tr style="opacity:0.5;"><td colspan="5" style="text-align:center; padding:3rem;">Loading users...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Settings Tab (Profile) -->
+            <section id="settings-tab" class="tab-content">
+                <div class="tab-header">
+                    <h1>Edit Profile</h1>
+                    <p>Manage your admin account settings.</p>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-photo-section">
+                        <div class="profile-avatar large">
+                            <img src="../Asset/Icons/profile.svg" alt="Admin" style="filter: invert(1); width: 40px;">
+                        </div>
+                        <div class="photo-info">
+                            <h3>Profile Photo</h3>
+                            <button class="secondary-btn small" onclick="alert('Photo upload feature coming soon')">Change Photo</button>
+                        </div>
+                    </div>
+
+                    <form id="profile-form" class="profile-form">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label>Full Name</label>
+                                <input type="text" id="admin-name-input" value="Admin User" placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="admin-email-input" value="admin@autoinsight.com" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" placeholder="+1 (555) 123-4567">
+                            </div>
+                        </div>
+
+                        <div class="password-change-section">
+                            <h3>Change Password</h3>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label>Current Password</label>
+                                    <input type="password" placeholder="Enter current password">
+                                </div>
+                                <div class="form-group">
+                                    <label>New Password</label>
+                                    <input type="password" placeholder="Enter new password">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password" placeholder="Confirm new password">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button type="submit" class="save-btn-large">
+                                <img src="../Asset/Icons/review-chat.svg" style="filter:invert(1); width:16px; margin-right:8px;">
+                                Save Changes
+                            </button>
+                            <button type="button" class="cancel-btn-outline" onclick="window.location.reload()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="admin-modal-overlay" id="car-modal-overlay">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Car</h2>
+                <button class="close-modal" id="close-car-modal">×</button>
+            </div>
+            <form id="car-form" class="modal-form">
                 <input type="hidden" name="id" id="car-id">
+                <input type="hidden" name="action" value="save">
+                
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Brand</label>
-                        <input type="text" name="brand" required placeholder="e.g. Honda">
+                        <input type="text" name="brand" placeholder="e.g. Porsche" required>
                     </div>
                     <div class="form-group">
-                        <label>Model</label>
-                        <input type="text" name="model" required placeholder="e.g. City">
+                        <label>Model Name</label>
+                        <input type="text" name="model" placeholder="e.g. 911 Carrera" required>
                     </div>
                     <div class="form-group">
                         <label>Year</label>
-                        <input type="number" name="year" required placeholder="2024">
+                        <input type="number" name="year" placeholder="2024" required>
                     </div>
                     <div class="form-group">
                         <label>Price (Lakhs)</label>
-                        <input type="number" step="0.1" name="price" required placeholder="12.0">
+                        <input type="number" step="0.1" name="price" placeholder="150.0" required>
                     </div>
                     <div class="form-group">
                         <label>Fuel Type</label>
@@ -97,22 +257,66 @@
                             <option value="Sedan">Sedan</option>
                             <option value="SUV">SUV</option>
                             <option value="Hatchback">Hatchback</option>
+                            <option value="Coupe">Coupe</option>
+                            <option value="MUV">MUV</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Seats</label>
+                        <input type="number" name="seats" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label>Engine</label>
+                        <input type="text" name="engine" placeholder="e.g. 1.5L i-VTEC">
+                    </div>
+                    <div class="form-group">
+                        <label>Transmission</label>
+                        <select name="transmission">
+                            <option value="Manual">Manual</option>
+                            <option value="Automatic">Automatic</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Mileage</label>
+                        <input type="text" name="mileage" placeholder="e.g. 17.8 km/l">
+                    </div>
+                    <div class="form-group">
+                        <label>Safety Rating</label>
+                        <input type="text" name="safety_rating" placeholder="e.g. 5 Stars">
+                    </div>
+                    <div class="form-group">
+                        <label>Special Tags</label>
+                        <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+                            <input type="checkbox" name="is_featured" id="is_featured" value="1" style="width:auto;">
+                            <label for="is_featured" style="margin:0; text-transform:none;">Mark as Featured</label>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Pros (One per line)</label>
+                        <textarea name="pros" placeholder="Excellent fuel efficiency&#10;Spacious interior" style="height:80px;"></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Cons (One per line)</label>
+                        <textarea name="cons" placeholder="Road noise at high speeds&#10;Limited boot space" style="height:80px;"></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Description</label>
+                        <textarea name="description" placeholder="Enter detailed description of the car..." style="height:120px;"></textarea>
                     </div>
                     <div class="form-group full-width">
                         <label>Image Path (relative to root)</label>
-                        <input type="text" name="image_path" placeholder="Asset/Images/honda_city.jpg">
+                        <input type="text" name="image_path" placeholder="Asset/Images/cars/porsche911.jpg" value="Asset/Images/porsche.jpg">
                     </div>
                 </div>
-                <div class="modal-actions">
-                    <button type="button" class="cancel-btn" id="close-modal">Cancel</button>
-                    <button type="submit" class="save-btn">Save Car</button>
+
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn" id="cancel-car-modal">Cancel</button>
+                    <button type="submit" class="save-btn">Save Vehicle</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script src="../JS/admin.js"></script>
-    <script src="../JS/include.js"></script>
 </body>
 </html>
