@@ -1,39 +1,35 @@
 <?php
 // backend/reviews/get_reviews.php
-// GET ?car_id=X &page=1
-// Returns: { success, reviews: [...], avg_rating, total }
-
 require_once __DIR__ . '/../config/db.php';
 header('Content-Type: application/json');
 
 $carId  = (int)($_GET['car_id'] ?? 0);
 $page   = max(1, (int)($_GET['page'] ?? 1));
-$limit  = 5;
+$limit  = 6;
 $offset = ($page - 1) * $limit;
 
-if (!$carId) { jsonResponse(false, 'car_id is required.'); }
-
 $db = getDB();
+$where = "1=1";
+$params = [];
 
-// Average rating + total count
-$meta = $db->prepare('SELECT AVG(rating) AS avg_rating, COUNT(*) AS total FROM reviews WHERE car_id = ?');
-$meta->execute([$carId]);
-$stats = $meta->fetch();
+if ($carId) {
+    $where = "r.car_id = ?";
+    $params[] = $carId;
+}
 
-// Paginated reviews
+// Reviews with car names and user info
 $stmt = $db->prepare("
-    SELECT r.id, r.rating, r.title, r.body, r.created_at,
-           u.name AS author, u.avatar
+    SELECT r.*,
+           u.name AS author, u.avatar,
+           c.brand, c.model
     FROM   reviews r
     JOIN   users u ON u.id = r.user_id
-    WHERE  r.car_id = ?
+    JOIN   cars c ON c.id = r.car_id
+    WHERE  $where
     ORDER  BY r.created_at DESC
     LIMIT  $limit OFFSET $offset
 ");
-$stmt->execute([$carId]);
+$stmt->execute($params);
+$reviews = $stmt->fetchAll();
 
-jsonResponse(true, 'OK', [
-    'reviews'    => $stmt->fetchAll(),
-    'avg_rating' => $stats['avg_rating'] ? round((float) $stats['avg_rating'], 1) : null,
-    'total'      => (int) $stats['total'],
-]);
+jsonResponse(true, 'OK', ['reviews' => $reviews]);

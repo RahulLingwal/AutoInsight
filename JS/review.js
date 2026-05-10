@@ -37,11 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const submitBtn = reviewForm.querySelector('.submit-btn');
         const formData = new FormData(reviewForm);
         const data = {
-            car_name: formData.get('Car'),
+            car_id: formData.get('car_id'),
             rating: formData.get('rating'),
             title: formData.get('Review Title'),
             description: formData.get('Review Description'),
-            ownership_duration: formData.get('Duration') // matches the select name
+            ownership_duration: document.getElementById('ownership-duration').value
         };
 
         if (data.description.length < 100) {

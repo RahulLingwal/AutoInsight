@@ -21,7 +21,7 @@ if (!empty($category)) {
 }
 
 $sql = "
-    SELECT d.id, d.category, d.title, d.body, d.views, d.created_at,
+    SELECT d.id, d.user_id, d.category, d.title, d.body, d.views, d.created_at,
            u.name AS author, u.avatar,
            (SELECT COUNT(*) FROM discussion_replies r WHERE r.discussion_id = d.id) AS reply_count,
            (SELECT MAX(r2.created_at) FROM discussion_replies r2 WHERE r2.discussion_id = d.id) AS last_reply_at

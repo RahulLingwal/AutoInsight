@@ -72,12 +72,5 @@ function requireAuth(): int {
     return $id;
 }
 
-// CORS headers — allow requests from same origin
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204);
-    exit;
-}
+// CORS is handled by the browser naturally for same-origin requests.
+// If you host frontend and backend separately, you would need specific origins here.

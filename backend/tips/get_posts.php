@@ -24,7 +24,7 @@ if (in_array($type, ['tip', 'problem'])) {
 }
 
 $sql = "
-    SELECT p.id, p.type, p.title, p.description, p.tags, p.votes,
+    SELECT p.id, p.user_id, p.type, p.title, p.description, p.tags, p.votes,
            p.created_at, u.name AS author, u.avatar,
            (SELECT COUNT(*) FROM tips_comments c WHERE c.post_id = p.id) AS comment_count
     FROM   tips_posts p

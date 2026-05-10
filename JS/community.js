@@ -4,148 +4,217 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModalX = document.getElementById("close-discussion-x");
     const closeModalBtn = document.getElementById("close-discussion-btn");
     const discussionForm = document.querySelector(".modal-form");
+    const forumFeed = document.querySelector(".forum-feed");
+    const modalTitle = document.querySelector(".modal-header-text h2");
+    const editIdInput = document.getElementById("edit-discussion-id");
 
-    // Open Modal
-    openModalBtn.addEventListener("click", () => {
-        modalOverlay.classList.add("active");
-        document.body.style.overflow = "hidden"; // Prevent background scroll
-    });
+    const currentUser = JSON.parse(sessionStorage.getItem('ai_user') || 'null');
 
-    // Close Modal Function
+    // Open Modal for New Discussion
+    if (openModalBtn) {
+        openModalBtn.addEventListener("click", () => {
+            modalTitle.textContent = "Start a New Discussion";
+            editIdInput.value = "";
+            discussionForm.reset();
+            modalOverlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        });
+    }
+
     const closeModal = () => {
         modalOverlay.classList.remove("active");
         document.body.style.overflow = "auto";
     };
 
-    closeModalX.addEventListener("click", closeModal);
-    closeModalBtn.addEventListener("click", closeModal);
+    if (closeModalX) closeModalX.addEventListener("click", closeModal);
+    if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
 
-    // Close on overlay click
-    modalOverlay.addEventListener("click", (e) => {
-        if (e.target === modalOverlay) {
-            closeModal();
-        }
-    });
-
-    // Handle Replies Toggle
-    const toggleReplyBtns = document.querySelectorAll(".toggle-replies");
-    toggleReplyBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const discussionCard = btn.closest(".discussion-card");
-            const repliesSection = discussionCard.querySelector(".replies-section");
-            if (repliesSection) {
-                repliesSection.classList.toggle("active");
-                // Scroll into view smoothly when opening
-                if (repliesSection.classList.contains("active")) {
-                    repliesSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
-                }
-            }
-        });
-    });
-
-    // Handle Post Reply button → POST to backend
-    const postReplyBtns = document.querySelectorAll(".post-reply-btn");
-    postReplyBtns.forEach(btn => {
-        btn.addEventListener("click", async () => {
-            const user = JSON.parse(sessionStorage.getItem('ai_user') || 'null');
-            if (!user) {
-                alert('Please log in to post a reply.');
-                window.location.href = '../HTML/login.html';
-                return;
-            }
-
-            const wrapper      = btn.closest(".reply-input-wrapper");
-            const textarea     = wrapper.querySelector(".reply-textarea");
-            const replyText    = textarea.value.trim();
-            const card         = btn.closest(".discussion-card");
-            const discussionId = card?.dataset?.discussionId || 1; // set via data attribute
-
-            if (!replyText) {
-                textarea.style.borderBottom = "1px solid rgb(220, 53, 69)";
-                return;
-            }
-            textarea.style.borderBottom = '';
-            btn.textContent = 'Posting...';
-            btn.disabled = true;
-
-            try {
-                const res  = await fetch('../backend/community/add_reply.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
-                    body: JSON.stringify({ discussion_id: discussionId, reply_text: replyText })
-                });
-                const data = await res.json();
-
-                if (data.success) {
-                    const reply = data.reply;
-                    const replyList = btn.closest(".replies-section").querySelector(".replies-list");
-                    const newCard = document.createElement('div');
-                    newCard.className = 'reply-card';
-                    newCard.style.borderLeftColor = '#00c853';
-                    newCard.innerHTML = `
-                        <div class="reply-user-info">
-                            <img src="../Asset/Images/person1.jpg" class="user-avatar" alt="User">
-                            <span class="username">${reply.author}</span>
-                            <span class="discussion-date">Just now</span>
-                        </div>
-                        <p class="reply-text">${reply.reply_text}</p>
-                    `;
-                    replyList.appendChild(newCard);
-                    textarea.value = '';
-                    newCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                } else {
-                    alert(data.message);
-                }
-            } catch (err) {
-                alert('Server error. Make sure XAMPP is running.');
-            } finally {
-                btn.textContent = 'Post Reply';
-                btn.disabled = false;
-            }
-        });
-    });
-
-    // Handle Discussion Form Submission → POST to backend
-    discussionForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const user = JSON.parse(sessionStorage.getItem('ai_user') || 'null');
-        if (!user) {
-            alert('Please log in to post a discussion.');
-            window.location.href = '../HTML/login.html';
-            return;
-        }
-
-        const title    = document.getElementById('discussion-title').value.trim();
-        const category = document.getElementById('discussion-category').value;
-        const body     = document.getElementById('discussion-desc').value.trim();
-        const submitBtn = discussionForm.querySelector('.publish-btn');
-
-        submitBtn.textContent = 'Posting...';
-        submitBtn.disabled = true;
-
+    // Fetch and Render Discussions
+    const fetchDiscussions = async () => {
         try {
-            const res  = await fetch('../backend/community/create_discussion.php', {
+            const res = await fetch('../backend/community/get_discussions.php');
+            const data = await res.json();
+            
+            if (data.success) {
+                forumFeed.innerHTML = '';
+                if (data.discussions.length === 0) {
+                    forumFeed.innerHTML = '<div style="text-align:center; padding:3rem; opacity:0.5;">No discussions yet. Be the first to start one!</div>';
+                    return;
+                }
+
+                data.discussions.forEach(d => {
+                    const isOwner = currentUser && (currentUser.id == d.user_id);
+                    const card = document.createElement('article');
+                    card.className = 'discussion-card';
+                    card.dataset.id = d.id;
+                    card.innerHTML = `
+                        <div class="discussion-header">
+                            <img src="${d.avatar || '../Asset/Images/person1.jpg'}" alt="User" class="avatar">
+                            <div class="discussion-user-meta">
+                                <h5>${d.author}</h5>
+                                <span class="discussion-date">${new Date(d.created_at).toLocaleDateString()}</span>
+                            </div>
+                            <span class="discussion-tag">${d.category}</span>
+                            ${isOwner ? `
+                                <div class="owner-actions" style="margin-left: auto; display: flex; gap: 8px;">
+                                    <button class="edit-btn" onclick="openEditDiscussion(${JSON.stringify(d).replace(/"/g, '&quot;')})">Edit</button>
+                                    <button class="delete-btn" onclick="deleteDiscussion(${d.id})">Delete</button>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <h2 class="discussion-title">${d.title}</h2>
+                        <p class="discussion-snippet">${d.body.substring(0, 200)}${d.body.length > 200 ? '...' : ''}</p>
+                        <div class="discussion-footer">
+                            <div class="discussion-stats">
+                                <div class="stat-item toggle-replies" onclick="loadReplies(${d.id}, this)">
+                                    <img src="../Asset/Icons/review-chat.svg" alt="Replies">
+                                    ${d.reply_count} replies
+                                </div>
+                                <div class="stat-item">
+                                    <img src="../Asset/Icons/profile.svg" alt="Views">
+                                    ${d.views} views
+                                </div>
+                            </div>
+                        </div>
+                        <div class="replies-section" id="replies-${d.id}">
+                            <div class="replies-list"></div>
+                            <div class="reply-input-wrapper">
+                                <textarea class="reply-textarea" placeholder="Write a reply..."></textarea>
+                                <button class="post-reply-btn" onclick="postReply(${d.id}, this)">Post Reply</button>
+                            </div>
+                        </div>
+                    `;
+                    forumFeed.appendChild(card);
+                });
+            }
+        } catch (err) {
+            console.error("Error loading discussions:", err);
+        }
+    };
+
+    fetchDiscussions();
+
+    // Discussion Creation OR Edit
+    if (discussionForm) {
+        discussionForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            if (!currentUser) { alert('Please login first'); return; }
+
+            const editId = editIdInput.value;
+            const endpoint = editId ? '../backend/community/edit_discussion.php' : '../backend/community/create_discussion.php';
+
+            const title = document.getElementById('discussion-title').value;
+            const category = document.getElementById('discussion-category').value;
+            const body = document.getElementById('discussion-desc').value;
+
+            const payload = { title, category, body };
+            if (editId) payload.discussion_id = editId;
+
+            const res = await fetch(endpoint, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
-                body: JSON.stringify({ title, category, body })
+                body: JSON.stringify(payload)
             });
             const data = await res.json();
-
             if (data.success) {
                 closeModal();
+                fetchDiscussions();
                 discussionForm.reset();
-                window.location.reload();
             } else {
                 alert(data.message);
             }
-        } catch (err) {
-            alert('Server error. Make sure XAMPP is running.');
-        } finally {
-            submitBtn.textContent = 'Post Discussion';
-            submitBtn.disabled = false;
+        });
+    }
+
+    // Global action handlers
+    window.openEditDiscussion = (d) => {
+        modalTitle.textContent = "Edit Discussion";
+        editIdInput.value = d.id;
+        document.getElementById('discussion-title').value = d.title;
+        document.getElementById('discussion-category').value = d.category;
+        document.getElementById('discussion-desc').value = d.body;
+
+        modalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    };
+
+    window.deleteDiscussion = async (id) => {
+        if (!confirm('Are you sure you want to delete this discussion?')) return;
+
+        const res = await fetch('../backend/community/delete_discussion.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
+            body: JSON.stringify({ discussion_id: id })
+        });
+        const data = await res.json();
+        if (data.success) {
+            fetchDiscussions();
+        } else {
+            alert(data.message);
         }
-    });
+    };
 });
+
+// Global functions for inline actions
+async function loadReplies(id, btn) {
+    const section = document.getElementById(`replies-${id}`);
+    const list = section.querySelector('.replies-list');
+    section.classList.toggle('active');
+    
+    if (section.classList.contains('active') && list.children.length === 0) {
+        list.innerHTML = 'Loading replies...';
+        const res = await fetch(`../backend/community/get_replies.php?discussion_id=${id}`);
+        const data = await res.json();
+        if (data.success) {
+            list.innerHTML = data.replies.length ? '' : 'No replies yet.';
+            data.replies.forEach(r => {
+                const div = document.createElement('div');
+                div.className = 'reply-card';
+                div.innerHTML = `
+                    <div class="reply-user-info">
+                        <img src="${r.avatar || '../Asset/Images/person1.jpg'}" class="user-avatar">
+                        <span class="username">${r.author}</span>
+                        <span class="discussion-date">${new Date(r.created_at).toLocaleDateString()}</span>
+                    </div>
+                    <p class="reply-text">${r.reply_text}</p>
+                `;
+                list.appendChild(div);
+            });
+        }
+    }
+}
+
+async function postReply(id, btn) {
+    const user = JSON.parse(sessionStorage.getItem('ai_user') || 'null');
+    if (!user) { alert('Please login first'); return; }
+
+    const textarea = btn.previousElementSibling;
+    const text = textarea.value.trim();
+    if (!text) return;
+
+    btn.disabled = true;
+    const res = await fetch('../backend/community/add_reply.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ discussion_id: id, reply_text: text })
+    });
+    const data = await res.json();
+    if (data.success) {
+        textarea.value = '';
+        const list = document.getElementById(`replies-${id}`).querySelector('.replies-list');
+        const div = document.createElement('div');
+        div.className = 'reply-card';
+        div.innerHTML = `
+            <div class="reply-user-info">
+                <img src="${user.avatar || '../Asset/Images/person1.jpg'}" class="user-avatar">
+                <span class="username">${user.name}</span>
+                <span class="discussion-date">Just now</span>
+            </div>
+            <p class="reply-text">${text}</p>
+        `;
+        list.appendChild(div);
+    }
+    btn.disabled = false;
+}

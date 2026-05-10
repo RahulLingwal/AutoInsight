@@ -27,26 +27,31 @@
           <br />
           <select
             class="input-element"
-            name="Car"
+            name="car_id"
             id="select-car-model"
             required
           >
             <option value="" hidden selected>Choose a Car...</option>
-            <option value="Porsche 911 (2020)">Porsche 911 (2020)</option>
-            <option value="RR Phantom (2020)">RR Phantom (2020)</option>
-            <option value="Mercedes G-Wagon (2022)">
-              Mercedes G-Wagon (2022)
-            </option>
-            <option value="Audi R8 (2024)">Audi R8 (2024)</option>
-            <option value="Bentley Flying Spur (2020)">
-              Bentley Flying Spur (2020)
-            </option>
-            <option value="Mercedes GT (2021)">Mercedes GT (2021)</option>
-            <option value="Land Rover Defender (2024)">
-              Land Rover Defender (2024)
-            </option>
-            <option value="BMW M5 (2025)">BMW M5 (2025)</option>
+            <!-- Cars will be loaded here dynamically -->
           </select>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', async () => {
+              const carSelect = document.getElementById('select-car-model');
+              try {
+                const res = await fetch('../backend/cars/get_cars.php');
+                const data = await res.json();
+                if (data.success && data.data.cars) {
+                  data.data.cars.forEach(car => {
+                    const opt = document.createElement('option');
+                    opt.value = car.id;
+                    opt.textContent = `${car.brand} ${car.model} (${car.year})`;
+                    carSelect.appendChild(opt);
+                  });
+                }
+              } catch (e) {}
+            });
+          </script>
         </div>
 
         <div class="rating-section">
