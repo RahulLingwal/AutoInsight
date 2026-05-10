@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - AutoInsight</title>
+    <link rel="shortcut icon" href="../Asset/Icons/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/profile.css">
+</head>
+<body class="profile-page">
+    <div id="header"></div>
+
+    <main class="profile-wrapper">
+        <!-- Banner/Header Section -->
+        <section class="profile-hero">
+            <div class="profile-hero-content">
+                <div class="avatar-container">
+                    <img id="main-avatar" src="../Asset/Images/person1.jpg" alt="Avatar">
+                    <button class="change-avatar-btn">
+                        <img src="../Asset/Icons/car-ico.svg" alt="Edit" style="filter: invert(1);">
+                    </button>
+                </div>
+                <div class="profile-actions">
+                    <button class="action-btn settings-btn">
+                        <img src="../Asset/Icons/tips.svg" alt="Settings" class="btn-icon">
+                        Settings
+                    </button>
+                    <button class="action-btn logout-btn-red" id="profile-logout-btn">
+                        <img src="../Asset/Icons/review.svg" alt="Logout" class="btn-icon">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <div class="profile-grid">
+            <!-- Sidebar -->
+            <aside class="profile-info-sidebar">
+                <div class="info-card user-basics">
+                    <h1 id="user-display-name">User Name</h1>
+                    <div class="info-item">
+                        <img src="../Asset/Icons/profile.svg" alt="Email" class="item-icon">
+                        <span id="user-display-email">user@email.com</span>
+                    </div>
+                    <div class="info-item">
+                        <img src="../Asset/Icons/home.svg" alt="Date" class="item-icon">
+                        <span>Joined March 2024</span>
+                    </div>
+                    <div class="info-item">
+                        <img src="../Asset/Icons/car-ico.svg" alt="Location" class="item-icon">
+                        <span>United States</span>
+                    </div>
+
+                    <div class="bio-section">
+                        <div class="bio-header">
+                            <h3>BIO</h3>
+                            <button class="edit-bio-btn">&#9998;</button>
+                        </div>
+                        <p class="bio-text">Car enthusiast and AutoInsight community member. Passionate about sharing automotive knowledge and helping others make informed decisions.</p>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon star"><img src="../Asset/Icons/review.svg" alt="Star"></div>
+                        <div class="stat-val">24</div>
+                        <div class="stat-name">Reviews Written</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon chat"><img src="../Asset/Icons/chat.svg" alt="Chat"></div>
+                        <div class="stat-val">67</div>
+                        <div class="stat-name">Forum Posts</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon tip"><img src="../Asset/Icons/tips.svg" alt="Tip"></div>
+                        <div class="stat-val">12</div>
+                        <div class="stat-name">Tips Shared</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon rep"><img src="../Asset/Icons/home.svg" alt="Reputation" style="filter: hue-rotate(280deg);"></div>
+                        <div class="stat-val">1,245</div>
+                        <div class="stat-name">Reputation</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <section class="profile-main-content">
+                <nav class="content-tabs">
+                    <button class="tab-btn active" data-tab="activity">Recent Activity</button>
+                    <button class="tab-btn" data-tab="reviews">My Reviews</button>
+                    <button class="tab-btn" data-tab="forum">Forum Posts</button>
+                </nav>
+
+                <div class="tab-content">
+                    <!-- Activity Feed -->
+                    <div class="tab-pane active" id="activity">
+                        <div class="activity-card">
+                            <div class="activity-icon-wrapper star">
+                                <img src="../Asset/Icons/review.svg" alt="Review">
+                            </div>
+                            <div class="activity-info">
+                                <h4>Reviewed Toyota Camry 2024</h4>
+                                <p>Gave 4.5 stars - "Excellent reliability and comfort"</p>
+                                <span class="activity-date">2 days ago</span>
+                            </div>
+                        </div>
+
+                        <div class="activity-card">
+                            <div class="activity-icon-wrapper chat">
+                                <img src="../Asset/Icons/chat.svg" alt="Post">
+                            </div>
+                            <div class="activity-info">
+                                <h4>Posted in Community Forum</h4>
+                                <p>Best fuel-efficient cars for long commutes?</p>
+                                <span class="activity-date">5 days ago</span>
+                            </div>
+                        </div>
+
+                        <div class="activity-card">
+                            <div class="activity-icon-wrapper tip">
+                                <img src="../Asset/Icons/tips.svg" alt="Tip">
+                            </div>
+                            <div class="activity-info">
+                                <h4>Shared a maintenance tip</h4>
+                                <p>How to properly change brake pads on Honda models</p>
+                                <span class="activity-date">1 week ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other panes would be similar -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const user = JSON.parse(sessionStorage.getItem('ai_user') || 'null');
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            document.getElementById('user-display-name').textContent = user.name;
+            document.getElementById('user-display-email').textContent = user.email;
+            
+            if (user.avatar) {
+                document.getElementById('main-avatar').src = '../' + user.avatar;
+            }
+
+            // Tab logic
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                });
+            });
+
+            // Logout
+            document.getElementById('profile-logout-btn').addEventListener('click', async () => {
+                try {
+                    await fetch('../backend/auth/logout.php', { method: 'POST' });
+                } catch (e) {}
+                sessionStorage.removeItem('ai_user');
+                window.location.href = '../index.html';
+            });
+        });
+    </script>
+    <script src="../JS/include.js"></script>
+</body>
+</html>

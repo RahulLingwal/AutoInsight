@@ -23,7 +23,7 @@ if (empty($email) || empty($password)) {
 
 // ── Look up user ─────────────────────────────────────────────
 $db   = getDB();
-$stmt = $db->prepare('SELECT id, name, email, password_hash FROM users WHERE email = ?');
+$stmt = $db->prepare('SELECT id, name, email, password_hash, role FROM users WHERE email = ?');
 $stmt->execute([$email]);
 $user = $stmt->fetch();
 
@@ -36,11 +36,13 @@ if (!$user || !password_verify($password, $user['password_hash'])) {
 $_SESSION['user_id']    = $user['id'];
 $_SESSION['user_name']  = $user['name'];
 $_SESSION['user_email'] = $user['email'];
+$_SESSION['user_role']  = $user['role'];
 
 jsonResponse(true, 'Logged in successfully!', [
     'user' => [
         'id'    => $user['id'],
         'name'  => $user['name'],
         'email' => $user['email'],
+        'role'  => $user['role'],
     ]
 ]);

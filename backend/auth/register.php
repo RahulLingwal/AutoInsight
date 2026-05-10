@@ -51,14 +51,16 @@ $insert->execute([$name, $email, $hash]);
 $userId = (int) $db->lastInsertId();
 
 // ── Start session ────────────────────────────────────────────
-$_SESSION['user_id']   = $userId;
-$_SESSION['user_name'] = $name;
-$_SESSION['user_email']= $email;
+$_SESSION['user_id']    = $userId;
+$_SESSION['user_name']  = $userId;
+$_SESSION['user_email'] = $email;
+$_SESSION['user_role']  = 'user';
 
 jsonResponse(true, 'Account created successfully!', [
     'user' => [
         'id'    => $userId,
         'name'  => $name,
         'email' => $email,
+        'role'  => 'user'
     ]
 ]);

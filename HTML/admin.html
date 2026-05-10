@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - AutoInsight</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
+</head>
+<body>
+    <div id="header"></div>
+
+    <main class="admin-container">
+        <header class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <p>Manage your car catalogue and site content</p>
+        </header>
+
+        <section class="admin-stats">
+            <div class="stat-card">
+                <h3>Total Cars</h3>
+                <p id="stat-cars">...</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Reviews</h3>
+                <p id="stat-reviews">...</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <p id="stat-users">...</p>
+            </div>
+        </section>
+
+        <!-- Manage Cars Section -->
+        <section class="manage-cars-section">
+            <div class="section-header">
+                <h2>Manage Car Catalogue</h2>
+                <button class="add-btn" id="open-add-modal">+ Add New Car</button>
+            </div>
+
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                            <th>Price (Lakh)</th>
+                            <th>Fuel</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cars-table-body">
+                        <!-- Loaded via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add/Edit Car Modal -->
+    <div class="modal" id="car-modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Add New Car</h2>
+            <form id="car-form">
+                <input type="hidden" name="id" id="car-id">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <input type="text" name="brand" required placeholder="e.g. Honda">
+                    </div>
+                    <div class="form-group">
+                        <label>Model</label>
+                        <input type="text" name="model" required placeholder="e.g. City">
+                    </div>
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input type="number" name="year" required placeholder="2024">
+                    </div>
+                    <div class="form-group">
+                        <label>Price (Lakhs)</label>
+                        <input type="number" step="0.1" name="price" required placeholder="12.0">
+                    </div>
+                    <div class="form-group">
+                        <label>Fuel Type</label>
+                        <select name="fuel_type">
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Body Type</label>
+                        <select name="body_type">
+                            <option value="Sedan">Sedan</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Hatchback">Hatchback</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Image Path (relative to root)</label>
+                        <input type="text" name="image_path" placeholder="Asset/Images/honda_city.jpg">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" id="close-modal">Cancel</button>
+                    <button type="submit" class="save-btn">Save Car</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../JS/admin.js"></script>
+    <script src="../JS/include.js"></script>
+</body>
+</html>

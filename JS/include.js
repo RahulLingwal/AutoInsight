@@ -1,84 +1,114 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Determine path to header.html
     const isRoot = !window.location.pathname.includes("/HTML/");
     const headerPath = isRoot ? "HTML/header.html" : "header.html";
 
-	fetch(headerPath)
-		.then((response) => response.text())
-		.then((data) => {
-			document.getElementById("header").innerHTML = data;
+    fetch(headerPath)
+        .then(response => response.text())
+        .then(data => {
+            const headerContainer = document.getElementById("header");
+            if (!headerContainer) return;
+            
+            headerContainer.innerHTML = data;
 
-            // Fix link paths if in root
-            if (isRoot) {
-                const links = document.querySelectorAll("#header a");
-                links.forEach(link => {
-                    let href = link.getAttribute("href");
-                    // If href starts with ../HTML/, remove the ../
-                    if (href && href.startsWith("../HTML/")) {
-                        link.setAttribute("href", href.replace("../HTML/", "HTML/"));
-                    }
-                    // If href is ../Asset/, remove ../
-                    if (href && href.startsWith("../Asset/")) {
-                        link.setAttribute("href", href.replace("../Asset/", "Asset/"));
-                    }
-                    // If href is index.html, keep it as is (already fixed in header.html)
-                });
+            // 1. Path Fixing
+            const links = headerContainer.querySelectorAll("a");
+            const images = headerContainer.querySelectorAll("img");
+
+            links.forEach(link => {
+                let href = link.getAttribute("href");
+                if (!href) return;
                 
-                const navImages = document.querySelectorAll("#header img");
-                navImages.forEach(img => {
-                    let src = img.getAttribute("src");
-                    if (src && src.startsWith("../Asset/")) {
-                        img.setAttribute("src", src.replace("../Asset/", "Asset/"));
-                    }
+                if (isRoot) {
+                    if (href.startsWith("../HTML/")) link.setAttribute("href", href.replace("../HTML/", "HTML/"));
+                    if (href.startsWith("../Asset/")) link.setAttribute("href", href.replace("../Asset/", "Asset/"));
+                } else {
+                    if (href === "index.html") link.setAttribute("href", "../index.html");
+                }
+            });
+
+            images.forEach(img => {
+                let src = img.getAttribute("src");
+                if (!src) return;
+                if (isRoot && src.startsWith("../Asset/")) {
+                    img.setAttribute("src", src.replace("../Asset/", "Asset/"));
+                }
+            });
+
+            // 2. Auth Logic
+            const user = JSON.parse(sessionStorage.getItem('ai_user') || 'null');
+            const loggedOut = document.getElementById('nav-logged-out');
+            const loggedIn  = document.getElementById('nav-logged-in');
+
+            if (user && loggedOut && loggedIn) {
+                loggedOut.style.display = 'none';
+                loggedIn.style.display  = 'flex';
+                
+                // Populate Dropdown & Pill
+                document.getElementById('nav-user-name').textContent = user.name;
+                document.getElementById('dropdown-name').textContent = user.name;
+                document.getElementById('dropdown-email').textContent = user.email;
+                
+                // Handle Avatar
+                if (user.avatar) {
+                    const avatarPath = isRoot ? user.avatar : '../' + user.avatar;
+                    document.getElementById('nav-avatar').src = avatarPath;
+                    document.getElementById('dropdown-avatar').src = avatarPath;
+                }
+
+                // Dropdown Toggle
+                const pill = document.getElementById('profile-pill');
+                const dropdown = document.getElementById('profile-dropdown');
+                
+                pill.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdown.classList.toggle('active');
                 });
-            } else {
-                // If in HTML folder, and link points to index.html, it should be ../index.html
-                const links = document.querySelectorAll("#header a");
-                links.forEach(link => {
-                    let href = link.getAttribute("href");
-                    if (href === "index.html") {
-                        link.setAttribute("href", "../index.html");
-                    }
+
+                document.addEventListener('click', () => {
+                    dropdown.classList.remove('active');
+                });
+
+                // Path fixing for injected dropdown links
+                const prefix = isRoot ? 'HTML/' : '';
+                document.getElementById('dropdown-profile-link').href = prefix + 'profile.html';
+                document.getElementById('dropdown-settings-link').href = prefix + 'profile.html?tab=settings';
+
+                // Admin Panel link injection if needed (as a regular nav item)
+                if (user.role === 'admin') {
+                    const navList = headerContainer.querySelector('.navlist');
+                    const adminLi = document.createElement('li');
+                    adminLi.className = 'navlist-items';
+                    const assetPrefix = isRoot ? 'Asset/' : '../Asset/';
+                    adminLi.innerHTML = `<a href="${prefix}admin.html"><img class="icons" src="${assetPrefix}Icons/profile.svg" alt="Admin" />Admin Panel</a>`;
+                    navList.appendChild(adminLi);
+                }
+            }
+
+            // 3. Highlight Active Page
+            const currentPage = window.location.pathname.split("/").pop() || "index.html";
+            const navLinks = headerContainer.querySelectorAll(".navlist-items a");
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute("href");
+                if (!linkHref) return;
+                const linkPage = linkHref.split("/").pop().split("#")[0];
+                if (linkPage === currentPage) {
+                    link.parentElement.classList.add("active");
+                }
+            });
+
+            // 4. Logout Handler
+            const logoutBtn = document.getElementById('nav-logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', async () => {
+                    try {
+                        const path = isRoot ? 'backend/auth/logout.php' : '../backend/auth/logout.php';
+                        await fetch(path, { method: 'POST' });
+                    } catch (e) {}
+                    sessionStorage.removeItem('ai_user');
+                    window.location.href = isRoot ? 'index.html' : '../index.html';
                 });
             }
-			
-			// Highlight active page in navbar
-			const currentPath = window.location.pathname;
-			const currentPage = currentPath.split("/").pop() || "index.html";
-			
-			const navLinks = document.querySelectorAll("#header a");
-			
-			navLinks.forEach(link => {
-				const linkHref = link.getAttribute("href");
-                if (!linkHref) return;
-
-                const linkPage = linkHref.split("/").pop().split("#")[0];
-				
-				if (linkPage === currentPage) {
-                    // Check if it's a navlist item
-					if (link.parentElement.classList.contains("navlist-items")) {
-					    link.parentElement.classList.add("active");
-                    }
-                    
-                    // Highlight Write Review link (which is in navlist-items)
-                    if (currentPage === "review.html" && linkHref.includes("review.html")) {
-                        link.parentElement.classList.add("active");
-
-
-
-                    }
-
-                    // Highlight Login/Signup buttons if we are on those pages
-                    if ((currentPage === "login.html" || currentPage === "signup.html") && linkHref.includes(currentPage)) {
-                        const btn = link.querySelector("button");
-                        if (btn) {
-                            btn.style.backgroundColor = "rgb(26, 135, 255)";
-                            btn.style.boxShadow = "0 0 15px rgba(26, 135, 255, 0.4)";
-                            btn.style.border = "none";
-                        }
-                    }
-				}
-			});
-		})
-		.catch((error) => console.error("Error loading header:", error));
+        })
+        .catch(error => console.error("Error loading header:", error));
 });

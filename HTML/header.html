@@ -71,44 +71,47 @@
         </div>
 
         <!-- Logged IN -->
-        <div id="nav-logged-in" style="display:none; align-items:center; gap:1.2rem;">
-          <span id="nav-user-name" style="color:white; font-weight:700; font-size:0.95rem; border-right:1px solid rgba(255,255,255,0.1); padding-right:1rem;"></span>
-          <button class="logInButton" id="nav-logout-btn" style="border:none; cursor:pointer; color: #ff6b7a;">
-            Logout
-          </button>
+        <div id="nav-logged-in" style="display:none; position:relative; align-items:center;">
+          <div class="profile-pill" id="profile-pill">
+            <div class="pill-avatar">
+              <img id="nav-avatar" src="../Asset/Images/person1.jpg" alt="User">
+            </div>
+            <span id="nav-user-name">User</span>
+            <span class="chevron">&#9662;</span>
+          </div>
+
+          <!-- Dropdown Menu -->
+          <div class="profile-dropdown" id="profile-dropdown">
+            <div class="dropdown-header">
+              <img id="dropdown-avatar" src="../Asset/Images/person1.jpg" alt="User">
+              <div class="user-info">
+                <p id="dropdown-name" class="name">User Name</p>
+                <p id="dropdown-email" class="email">user@email.com</p>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <ul class="dropdown-links">
+              <li>
+                <a href="../HTML/profile.html" id="dropdown-profile-link">
+                  <img src="../Asset/Icons/profile.svg" alt="Profile">
+                  View Profile
+                </a>
+              </li>
+              <li>
+                <a href="../HTML/profile.html?tab=settings" id="dropdown-settings-link">
+                  <img src="../Asset/Icons/tips.svg" alt="Settings">
+                  Settings
+                </a>
+              </li>
+              <li class="logout-li">
+                <button id="nav-logout-btn">
+                  <img src="../Asset/Icons/review.svg" alt="Logout" style="filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(311deg) brightness(100%) contrast(100%);">
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
 
-    <script>
-      // Auth State Management
-      const initAuth = () => {
-        const user = JSON.parse(sessionStorage.getItem('ai_user') || 'null');
-        const loggedOut = document.getElementById('nav-logged-out');
-        const loggedIn  = document.getElementById('nav-logged-in');
-        const userName  = document.getElementById('nav-user-name');
-
-        if (user && loggedOut && loggedIn && userName) {
-          loggedOut.style.display = 'none';
-          loggedIn.style.display  = 'flex';
-          userName.textContent    = user.name;
-        }
-      };
-
-      initAuth();
-
-      // Logout handler
-      const logoutBtn = document.getElementById('nav-logout-btn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', async () => {
-          try {
-            const isRoot = !window.location.pathname.includes('/HTML/');
-            const path   = isRoot ? 'backend/auth/logout.php' : '../backend/auth/logout.php';
-            await fetch(path, { method: 'POST' });
-          } catch (e) {}
-          
-          sessionStorage.removeItem('ai_user');
-          window.location.href = window.location.pathname.includes('/HTML/') ? '../index.html' : 'index.html';
-        });
-      }
-    </script>
