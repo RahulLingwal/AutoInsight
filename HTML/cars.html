@@ -22,41 +22,41 @@
             <div class="filter-group">
                 <h4>Brand</h4>
                 <div class="filter-options">
-                    <label class="filter-item"><input type="checkbox"> Honda</label>
-                    <label class="filter-item"><input type="checkbox"> Hyundai</label>
-                    <label class="filter-item"><input type="checkbox"> Kia</label>
-                    <label class="filter-item"><input type="checkbox"> Mahindra</label>
-                    <label class="filter-item"><input type="checkbox"> Maruti</label>
-                    <label class="filter-item"><input type="checkbox"> Toyota</label>
+                    <label class="filter-item"><input type="checkbox" name="brand" value="Honda" data-type="brand"> Honda</label>
+                    <label class="filter-item"><input type="checkbox" name="brand" value="Hyundai" data-type="brand"> Hyundai</label>
+                    <label class="filter-item"><input type="checkbox" name="brand" value="Kia" data-type="brand"> Kia</label>
+                    <label class="filter-item"><input type="checkbox" name="brand" value="Mahindra" data-type="brand"> Mahindra</label>
+                    <label class="filter-item"><input type="checkbox" name="brand" value="Maruti" data-type="brand"> Maruti</label>
+                    <label class="filter-item"><input type="checkbox" name="brand" value="Toyota" data-type="brand"> Toyota</label>
                 </div>
             </div>
 
             <div class="filter-group">
                 <h4>Price Range</h4>
                 <div class="filter-options">
-                    <label class="filter-item"><input type="radio" name="price" checked> All Prices</label>
-                    <label class="filter-item"><input type="radio" name="price"> Under ₹10L</label>
-                    <label class="filter-item"><input type="radio" name="price"> ₹10L - ₹20L</label>
-                    <label class="filter-item"><input type="radio" name="price"> ₹20L - ₹30L</label>
-                    <label class="filter-item"><input type="radio" name="price"> Above ₹30L</label>
+                    <label class="filter-item"><input type="radio" name="price" data-min="0" data-max="999" data-type="price" checked> All Prices</label>
+                    <label class="filter-item"><input type="radio" name="price" data-min="0" data-max="10" data-type="price"> Under ₹10L</label>
+                    <label class="filter-item"><input type="radio" name="price" data-min="10" data-max="20" data-type="price"> ₹10L - ₹20L</label>
+                    <label class="filter-item"><input type="radio" name="price" data-min="20" data-max="30" data-type="price"> ₹20L - ₹30L</label>
+                    <label class="filter-item"><input type="radio" name="price" data-min="30" data-max="999" data-type="price"> Above ₹30L</label>
                 </div>
             </div>
 
             <div class="filter-group">
                 <h4>Fuel Type</h4>
                 <div class="filter-options">
-                    <label class="filter-item"><input type="checkbox"> Petrol</label>
-                    <label class="filter-item"><input type="checkbox"> Diesel</label>
-                    <label class="filter-item"><input type="checkbox"> Electric</label>
+                    <label class="filter-item"><input type="checkbox" name="fuel" value="Petrol" data-type="fuel"> Petrol</label>
+                    <label class="filter-item"><input type="checkbox" name="fuel" value="Diesel" data-type="fuel"> Diesel</label>
+                    <label class="filter-item"><input type="checkbox" name="fuel" value="Electric" data-type="fuel"> Electric</label>
                 </div>
             </div>
 
             <div class="filter-group">
                 <h4>Body Type</h4>
                 <div class="filter-options">
-                    <label class="filter-item"><input type="checkbox"> Sedan</label>
-                    <label class="filter-item"><input type="checkbox"> SUV</label>
-                    <label class="filter-item"><input type="checkbox"> Hatchback</label>
+                    <label class="filter-item"><input type="checkbox" name="body" value="Sedan" data-type="body"> Sedan</label>
+                    <label class="filter-item"><input type="checkbox" name="body" value="SUV" data-type="body"> SUV</label>
+                    <label class="filter-item"><input type="checkbox" name="body" value="Hatchback" data-type="body"> Hatchback</label>
                 </div>
             </div>
         </aside>
@@ -65,7 +65,7 @@
         <section class="cars-content">
             <header class="content-header">
                 <h1>Browse All Cars</h1>
-                <p>Showing <span>8</span> of 8 cars</p>
+                <p>Showing <span id="current-count">0</span> of <span id="total-count">0</span> cars</p>
             </header>
 
             <div class="cars-grid">

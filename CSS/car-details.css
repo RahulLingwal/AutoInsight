@@ -445,6 +445,30 @@ body {
     line-height: 1.6;
 }
 
+.write-review-cta {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: rgba(16, 116, 253, 0.05);
+    border: 1px dashed rgba(16, 116, 253, 0.3);
+    border-radius: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.write-review-cta p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.write-review-cta .cta-primary {
+    max-width: 250px;
+    width: 100%;
+}
+
 @media (max-width: 1024px) {
     .car-hero-card { flex-direction: column; }
     .spec-tables { grid-template-columns: 1fr; gap: 2rem; }

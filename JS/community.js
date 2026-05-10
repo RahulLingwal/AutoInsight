@@ -30,15 +30,54 @@ document.addEventListener("DOMContentLoaded", () => {
     if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
 
     // Fetch and Render Discussions
-    const fetchDiscussions = async () => {
+    const fetchDiscussions = async (category = '') => {
         try {
-            const res = await fetch('../backend/community/get_discussions.php');
+            const url = `../backend/community/get_discussions.php?category=${encodeURIComponent(category)}`;
+            const res = await fetch(url);
             const data = await res.json();
             
             if (data.success) {
+                // 1. Update Stats with Animation
+                const animateValue = (id, target) => {
+                    const obj = document.getElementById(id);
+                    if (!obj) return;
+                    let start = 0;
+                    const duration = 1000;
+                    const step = (timestamp) => {
+                        if (!start) start = timestamp;
+                        const progress = Math.min((timestamp - start) / duration, 1);
+                        const current = Math.floor(progress * target);
+                        obj.textContent = current > 999 ? (current/1000).toFixed(1) + 'K' : current;
+                        if (progress < 1) window.requestAnimationFrame(step);
+                    };
+                    window.requestAnimationFrame(step);
+                };
+
+                if (data.stats) {
+                    animateValue('stat-threads', data.stats.threads);
+                    animateValue('stat-posts', data.stats.posts);
+                    animateValue('stat-online', data.stats.online);
+                }
+
+                // 2. Update Category Counts
+                document.getElementById('count-all').textContent = data.stats.threads;
+                const catMap = {
+                    'Buying Advice': 'count-buying',
+                    'Car Comparison': 'count-comparison',
+                    'Electric Vehicles': 'count-ev',
+                    'Safety': 'count-safety'
+                };
+                // Reset counts
+                Object.values(catMap).forEach(id => document.getElementById(id).textContent = '0');
+                data.categories.forEach(c => {
+                    const id = catMap[c.category];
+                    if (id) document.getElementById(id).textContent = c.count;
+                });
+
+                // 3. Render Feed
                 forumFeed.innerHTML = '';
                 if (data.discussions.length === 0) {
-                    forumFeed.innerHTML = '<div style="text-align:center; padding:3rem; opacity:0.5;">No discussions yet. Be the first to start one!</div>';
+                    forumFeed.innerHTML = '<div style="text-align:center; padding:3rem; opacity:0.5;">No discussions yet in this category. Be the first to start one!</div>';
                     return;
                 }
 
@@ -93,6 +132,19 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     fetchDiscussions();
+
+    // Category Filter Handler
+    const categoryNav = document.getElementById('category-nav');
+    if (categoryNav) {
+        categoryNav.querySelectorAll('.category-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                categoryNav.querySelectorAll('.category-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                fetchDiscussions(item.dataset.category);
+            });
+        });
+    }
 
     // Discussion Creation OR Edit
     if (discussionForm) {

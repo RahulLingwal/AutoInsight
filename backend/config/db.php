@@ -30,6 +30,14 @@ function getDB(): PDO {
 
         try {
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+            
+            // Auto-migrate to add extra image columns
+            try {
+                $pdo->exec("ALTER TABLE cars ADD COLUMN image2 VARCHAR(255) DEFAULT NULL, ADD COLUMN image3 VARCHAR(255) DEFAULT NULL, ADD COLUMN image4 VARCHAR(255) DEFAULT NULL");
+            } catch (PDOException $e) {
+                // Ignore if columns already exist
+            }
+            
         } catch (PDOException $e) {
             http_response_code(500);
             echo json_encode(['success' => false, 'message' => 'Database connection failed.']);

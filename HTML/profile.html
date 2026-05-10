@@ -97,13 +97,24 @@
                 <div class="tab-content">
                     <!-- Activity Feed -->
                     <div class="tab-pane active" id="activity">
-                        <!-- Activity items will load here -->
                         <div class="loading-state" style="text-align:center; padding:2rem; opacity:0.5;">
                             No recent activity found.
                         </div>
                     </div>
 
-                    <!-- Other panes would be similar -->
+                    <!-- Reviews Feed -->
+                    <div class="tab-pane" id="reviews">
+                        <div class="loading-state" style="text-align:center; padding:2rem; opacity:0.5;">
+                            Loading your reviews...
+                        </div>
+                    </div>
+
+                    <!-- Forum Feed -->
+                    <div class="tab-pane" id="forum">
+                        <div class="loading-state" style="text-align:center; padding:2rem; opacity:0.5;">
+                            Loading your posts...
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -117,19 +128,125 @@
                 return;
             }
 
+            // Basic Info
             document.getElementById('user-display-name').textContent = user.name;
             document.getElementById('user-display-email').textContent = user.email;
-            
             if (user.avatar) {
                 document.getElementById('main-avatar').src = '../' + user.avatar;
             }
 
+            // ── Load Stats ───────────────────────────────────────────
+            const loadStats = async () => {
+                const res = await fetch('../backend/profile/get_user_stats.php');
+                const data = await res.json();
+                if (data.success) {
+                    const s = data.stats;
+                    const boxes = document.querySelectorAll('.stat-box .stat-val');
+                    boxes[0].textContent = s.reviews;
+                    boxes[1].textContent = s.discussions;
+                    boxes[2].textContent = s.posts;
+                    boxes[3].textContent = s.reputation;
+                }
+            };
+
+            // ── Load Activity ────────────────────────────────────────
+            const loadActivity = async (tab = 'activity') => {
+                const feed = document.getElementById(tab);
+                try {
+                    const res = await fetch('../backend/profile/get_user_activity.php');
+                    const data = await res.json();
+                    
+                    if (data.success && data.activities.length > 0) {
+                        let filtered = data.activities;
+                        if (tab === 'reviews') filtered = data.activities.filter(a => a.type === 'review');
+                        if (tab === 'forum') filtered = data.activities.filter(a => a.type !== 'review');
+
+                        if (filtered.length === 0) {
+                            feed.innerHTML = `<div class="loading-state">No ${tab} found.</div>`;
+                            return;
+                        }
+
+                        feed.innerHTML = filtered.map(act => `
+                            <div class="activity-item" style="display:flex; justify-content:space-between; align-items:center; gap:1.5rem; padding:1.5rem; background:rgba(255,255,255,0.03); border-radius:15px; margin-bottom:1rem; border:1px solid rgba(255,255,255,0.05);">
+                                <div style="display:flex; gap:1.5rem; align-items:center;">
+                                    <div class="act-icon" style="width:40px; height:40px; background:rgba(26,135,255,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center;">
+                                        <img src="../Asset/Icons/${getIcon(act.type)}" style="width:20px; filter:invert(1);">
+                                    </div>
+                                    <div class="act-details">
+                                        <h4 style="margin-bottom:0.3rem;">${act.title}</h4>
+                                        <p style="font-size:0.85rem; color:var(--text-muted);">${new Date(act.date).toLocaleDateString()} • ${act.type.toUpperCase()}</p>
+                                    </div>
+                                </div>
+                                <div class="act-actions" style="display:flex; gap:10px;">
+                                    <button class="edit-btn-small" onclick="editPost('${act.type}', ${act.id})" title="Edit" style="background:transparent; border:1px solid rgba(255,255,255,0.1); color:white; padding:5px 10px; border-radius:5px; cursor:pointer;">&#9998;</button>
+                                    <button class="delete-btn-small" onclick="deletePost('${act.type}', ${act.id})" title="Delete" style="background:transparent; border:1px solid rgba(220,53,69,0.3); color:#ff4d4d; padding:5px 10px; border-radius:5px; cursor:pointer;">&times;</button>
+                                </div>
+                            </div>
+                        `).join('');
+                    } else {
+                        feed.innerHTML = `<div class="loading-state">No activity found.</div>`;
+                    }
+                } catch (e) {
+                    feed.innerHTML = `<div class="loading-state">Failed to load ${tab}.</div>`;
+                }
+            };
+
+            const getIcon = (type) => {
+                if (type === 'review') return 'review.svg';
+                if (type === 'tip') return 'tips.svg';
+                if (type === 'discussion') return 'chat.svg';
+                return 'car-ico.svg';
+            };
+
+            // Global actions for onclick
+            window.deletePost = async (type, id) => {
+                if (!confirm(`Are you sure you want to delete this ${type}?`)) return;
+                
+                let endpoint = '';
+                if (type === 'review') endpoint = '../backend/reviews/delete_review.php';
+                else if (type === 'discussion') endpoint = '../backend/community/delete_discussion.php';
+                else endpoint = '../backend/tips/delete_post.php';
+
+                try {
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id })
+                    });
+                    const result = await res.json();
+                    if (result.success) {
+                        alert('Deleted successfully.');
+                        location.reload();
+                    } else {
+                        alert(result.message);
+                    }
+                } catch (e) {
+                    alert('Error deleting post.');
+                }
+            };
+
+            window.editPost = (type, id) => {
+                if (type === 'review') {
+                    window.location.href = `review.html?edit=${id}`;
+                } else if (type === 'tip' || type === 'problem') {
+                    window.location.href = `tips.html?edit=${id}`;
+                } else if (type === 'discussion') {
+                    window.location.href = `community.html?edit=${id}`;
+                }
+            };
+
             // Tab logic
             const tabs = document.querySelectorAll('.tab-btn');
+            const panes = document.querySelectorAll('.tab-pane');
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
                     tabs.forEach(t => t.classList.remove('active'));
+                    panes.forEach(p => p.classList.remove('active'));
+                    
                     tab.classList.add('active');
+                    document.getElementById(target).classList.add('active');
+                    loadActivity(target);
                 });
             });
 
@@ -141,6 +258,9 @@
                 sessionStorage.removeItem('ai_user');
                 window.location.href = '../index.html';
             });
+
+            loadStats();
+            loadActivity();
         });
     </script>
     <script src="../JS/include.js"></script>

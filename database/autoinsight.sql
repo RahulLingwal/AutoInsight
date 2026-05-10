@@ -42,13 +42,14 @@ CREATE TABLE IF NOT EXISTS cars (
 CREATE TABLE IF NOT EXISTS reviews (
     id           INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id      INT UNSIGNED  NOT NULL,
-    car_id       INT UNSIGNED  NOT NULL,
+    car_id       INT UNSIGNED  DEFAULT NULL,
+    car_name     VARCHAR(150)  DEFAULT NULL,
     rating       TINYINT       NOT NULL CHECK (rating BETWEEN 1 AND 5),
     title        VARCHAR(200)  NOT NULL,
     body         TEXT          NOT NULL,
     created_at   TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (car_id)  REFERENCES cars(id)  ON DELETE CASCADE
+    FOREIGN KEY (car_id)  REFERENCES cars(id)  ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 -- 4. Tips & Problems posts

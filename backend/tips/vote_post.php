@@ -49,10 +49,6 @@ if ($existing) {
 }
 
 // Return new vote count
-$newCount = (int) $db->prepare('SELECT votes FROM tips_posts WHERE id = ?')
-                     ->execute([$postId])
-                     ->fetchColumn();
-
 $stmt = $db->prepare('SELECT votes FROM tips_posts WHERE id = ?');
 $stmt->execute([$postId]);
 $newCount = (int) $stmt->fetchColumn();

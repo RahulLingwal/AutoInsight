@@ -25,15 +25,15 @@
 
             <div class="forum-stats">
                 <div class="stat-card">
-                    <h3>156</h3>
+                    <h3 id="stat-threads">0</h3>
                     <p>Active Threads</p>
                 </div>
                 <div class="stat-card">
-                    <h3>2.4K</h3>
+                    <h3 id="stat-posts">0</h3>
                     <p>Total Posts</p>
                 </div>
                 <div class="stat-card">
-                    <h3>892</h3>
+                    <h3 id="stat-online">0</h3>
                     <p>Members Online</p>
                 </div>
             </div>
@@ -41,30 +41,30 @@
 
         <section class="forum-layout">
             <aside class="forum-sidebar">
-                <nav class="category-list">
+                <nav class="category-list" id="category-nav">
                     <h4>
                         <img src="../Asset/Icons/growth.svg" alt="Categories" style="width: 20px;">
                         Categories
                     </h4>
-                    <a href="#" class="category-item active">
+                    <a href="#" class="category-item active" data-category="">
                         <span>All Discussions</span>
-                        <span class="category-count">6</span>
+                        <span class="category-count" id="count-all">0</span>
                     </a>
-                    <a href="#" class="category-item">
+                    <a href="#" class="category-item" data-category="Buying Advice">
                         <span>Buying Advice</span>
-                        <span class="category-count">3</span>
+                        <span class="category-count" id="count-buying">0</span>
                     </a>
-                    <a href="#" class="category-item">
+                    <a href="#" class="category-item" data-category="Car Comparison">
                         <span>Car Comparison</span>
-                        <span class="category-count">1</span>
+                        <span class="category-count" id="count-comparison">0</span>
                     </a>
-                    <a href="#" class="category-item">
+                    <a href="#" class="category-item" data-category="Electric Vehicles">
                         <span>Electric Vehicles</span>
-                        <span class="category-count">1</span>
+                        <span class="category-count" id="count-ev">0</span>
                     </a>
-                    <a href="#" class="category-item">
+                    <a href="#" class="category-item" data-category="Safety">
                         <span>Safety</span>
-                        <span class="category-count">1</span>
+                        <span class="category-count" id="count-safety">0</span>
                     </a>
                 </nav>
             </aside>

@@ -41,4 +41,20 @@ foreach ($discussions as &$d) {
     $d['views']       = (int) $d['views'];
 }
 
-jsonResponse(true, 'OK', ['discussions' => $discussions]);
+// --- Stats ---
+$totalThreads = $db->query("SELECT COUNT(*) FROM discussions")->fetchColumn();
+$totalPosts   = $db->query("SELECT (SELECT COUNT(*) FROM discussions) + (SELECT COUNT(*) FROM discussion_replies)")->fetchColumn();
+$membersOnline = $db->query("SELECT COUNT(*) FROM users WHERE role != 'admin'")->fetchColumn(); // Simplified online count
+
+// --- Categories ---
+$catCounts = $db->query("SELECT category, COUNT(*) as count FROM discussions GROUP BY category")->fetchAll();
+
+jsonResponse(true, 'OK', [
+    'discussions' => $discussions,
+    'stats' => [
+        'threads' => $totalThreads,
+        'posts' => $totalPosts,
+        'online' => $membersOnline
+    ],
+    'categories' => $catCounts
+]);

@@ -111,7 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
         carForm.cons.value = car.cons || "";
         carForm.description.value = car.description || "";
         carForm.is_featured.checked = car.is_featured == 1;
-        carForm.image_path.value = car.image_path;
+        carForm.image_path.value = car.image_path || "";
+        carForm.image2.value = car.image2 || "";
+        carForm.image3.value = car.image3 || "";
+        carForm.image4.value = car.image4 || "";
 
         carModal.classList.add('active');
     };

@@ -37,6 +37,9 @@ if ($action === 'save') {
     $seats         = (int)($data['seats'] ?? 5);
     $featured      = (int)($data['is_featured'] ?? 0);
     $image_path    = trim($data['image_path'] ?? 'Asset/Images/porsche.jpg');
+    $image2        = trim($data['image2'] ?? '');
+    $image3        = trim($data['image3'] ?? '');
+    $image4        = trim($data['image4'] ?? '');
     
     // Detailed Specs
     $engine        = trim($data['engine'] ?? '');
@@ -55,11 +58,13 @@ if ($action === 'save') {
         // Update
         $sql = "UPDATE cars SET 
                 brand=?, model=?, year=?, price_lakh=?, fuel_type=?, body_type=?, seats=?, is_featured=?, image_path=?,
+                image2=?, image3=?, image4=?,
                 engine=?, transmission=?, mileage=?, safety_rating=?, pros=?, cons=?, description=?
                 WHERE id=?";
         $stmt = $db->prepare($sql);
         $stmt->execute([
             $brand, $model, $year, $price, $fuel, $body, $seats, $featured, $image_path,
+            $image2, $image3, $image4,
             $engine, $transmission, $mileage, $safety, $pros, $cons, $description,
             $id
         ]);
@@ -68,11 +73,13 @@ if ($action === 'save') {
         // Insert
         $sql = "INSERT INTO cars (
                     brand, model, year, price_lakh, fuel_type, body_type, seats, is_featured, image_path,
+                    image2, image3, image4,
                     engine, transmission, mileage, safety_rating, pros, cons, description
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($sql);
         $stmt->execute([
             $brand, $model, $year, $price, $fuel, $body, $seats, $featured, $image_path,
+            $image2, $image3, $image4,
             $engine, $transmission, $mileage, $safety, $pros, $cons, $description
         ]);
         jsonResponse(true, 'Car added successfully', ['id' => $db->lastInsertId()]);

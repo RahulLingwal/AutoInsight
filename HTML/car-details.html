@@ -160,15 +160,11 @@
             <div class="tab-panel" id="tab-reviews">
                 <div class="reviews-header-row">
                     <div class="avg-rating-block">
-                        <span class="avg-number">4.5</span>
-                        <div class="stars-row">
-                            <img src="../Asset/Icons/star.png" alt="★">
-                            <img src="../Asset/Icons/star.png" alt="★">
-                            <img src="../Asset/Icons/star.png" alt="★">
-                            <img src="../Asset/Icons/star.png" alt="★">
-                            <img src="../Asset/Icons/star.png" alt="★">
+                        <span class="avg-number">0.0</span>
+                        <div class="stars-row" id="avg-stars-container">
+                            <!-- Dynamic stars will load here -->
                         </div>
-                        <p>Based on 234 reviews</p>
+                        <p id="total-reviews-label">Based on 0 reviews</p>
                     </div>
                 </div>
 
@@ -204,6 +200,133 @@
     </div>
 
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const carId = urlParams.get('id');
+
+        if (!carId) {
+            window.location.href = 'cars.html';
+        }
+
+        async function loadCarDetails() {
+            try {
+                const res = await fetch(`../backend/cars/get_car_details.php?id=${carId}`);
+                const data = await res.json();
+
+                if (data.success) {
+                    const car = data.car;
+                    const reviews = data.reviews;
+
+                    // Update Page Title
+                    document.title = `${car.brand} ${car.model} - AutoInsight`;
+                    
+                    // Update Hero Info
+                    document.querySelector('.car-name').textContent = `${car.brand} ${car.model}`;
+                    document.querySelector('.car-sub').textContent = `${car.brand} ${car.model} • ${car.year} Model`;
+                    document.querySelector('.price-big').textContent = `₹${car.price_lakh} Lakhs`;
+                    
+                    const mainImg = car.image_path || 'Asset/Images/porsche.jpg';
+                    const img2 = car.image2 || mainImg;
+                    const img3 = car.image3 || mainImg;
+                    const img4 = car.image4 || mainImg;
+                    
+                    document.getElementById('main-car-img').src = '../' + mainImg;
+                    
+                    const thumbStrip = document.querySelector('.thumbnail-strip');
+                    thumbStrip.innerHTML = `
+                        <img src="../${mainImg}" class="thumb active" onclick="setMain(this)">
+                        <img src="../${img2}" class="thumb" onclick="setMain(this)">
+                        <img src="../${img3}" class="thumb" onclick="setMain(this)">
+                        <img src="../${img4}" class="thumb" onclick="setMain(this)">
+                    `;                    
+                    // Update Rating Chip
+                    document.querySelector('.rating-val').textContent = data.avgRating || '0.0';
+                    document.querySelector('.review-count').textContent = `${data.reviewCount} reviews`;
+                    document.querySelector('.tab-bar .tab-btn[data-tab="reviews"]').textContent = `Owner Reviews (${data.reviewCount})`;
+
+                    // Update Quick Specs
+                    const specChips = document.querySelectorAll('.spec-val');
+                    specChips[0].innerHTML = `<img src="../Asset/Icons/fuel.svg"> ${car.fuel_type}`;
+                    specChips[1].innerHTML = `<img src="../Asset/Icons/speedometer.svg"> ${car.mileage || 'N/A'}`;
+                    specChips[2].innerHTML = `<img src="../Asset/Icons/people.svg"> ${car.seats} Seats`;
+                    specChips[3].innerHTML = `<img src="../Asset/Icons/shield.svg"> ${car.safety_rating || 'N/A'}`;
+
+                    // Update Spec Tables
+                    const valCells = document.querySelectorAll('.spec-table .val');
+                    valCells[0].textContent = car.engine || 'N/A';
+                    valCells[1].textContent = car.transmission || 'Manual';
+                    valCells[2].textContent = car.mileage || 'N/A';
+                    valCells[3].textContent = car.fuel_type;
+                    valCells[4].textContent = car.body_type;
+                    valCells[5].textContent = `${car.seats} Seats`;
+                    valCells[6].textContent = car.safety_rating || 'N/A';
+
+                    // Update Pros & Cons
+                    const prosList = document.querySelector('.pros-card ul');
+                    const consList = document.querySelector('.cons-card ul');
+                    
+                    if (car.pros) {
+                        prosList.innerHTML = car.pros.split('\n').map(p => `<li>&#10003; ${p}</li>`).join('');
+                    }
+                    if (car.cons) {
+                        consList.innerHTML = car.cons.split('\n').map(c => `<li>&#10007; ${c}</li>`).join('');
+                    }
+
+                    // Update CTA Buttons
+                    const writeReviewBtns = document.querySelectorAll('a[href="review.html"]');
+                    writeReviewBtns.forEach(btn => {
+                        btn.href = `review.html?car_id=${car.id}&car_name=${encodeURIComponent(car.brand + ' ' + car.model)}`;
+                    });
+                    
+                    // Populate Reviews
+                    const reviewList = document.querySelector('.review-list');
+                    const avgBlock = document.querySelector('.avg-rating-block');
+                    const avgStars = document.getElementById('avg-stars-container');
+                    
+                    const rating = parseFloat(data.avgRating || 0);
+                    avgBlock.querySelector('.avg-number').textContent = rating.toFixed(1);
+                    document.getElementById('total-reviews-label').textContent = `Based on ${data.reviewCount} reviews`;
+                    
+                    // Render Avg Stars
+                    avgStars.innerHTML = renderStars(rating);
+
+                    if (reviews.length > 0) {
+                        reviewList.innerHTML = reviews.map(r => `
+                            <div class="review-card">
+                                <div class="review-top">
+                                    <img src="../${r.user_avatar || 'Asset/Images/person1.jpg'}" alt="User" class="review-avatar">
+                                    <div>
+                                        <h5>${r.user_name}</h5>
+                                        <p class="review-meta">Owner • ${new Date(r.created_at).toLocaleDateString()}</p>
+                                    </div>
+                                    <div class="review-stars">
+                                        ${renderStars(r.rating)}
+                                    </div>
+                                </div>
+                                <h4 class="review-title">${r.title}</h4>
+                                <p class="review-body">${r.body}</p>
+                            </div>
+                        `).join('');
+                    } else {
+                        reviewList.innerHTML = '<p style="text-align:center; opacity:0.5; padding:2rem;">No reviews yet. Be the first to write one!</p>';
+                    }
+
+                }
+            } catch (err) {
+                console.error("Error loading car details:", err);
+            }
+        }
+
+        function renderStars(rating) {
+            const full = Math.floor(rating);
+            const empty = 5 - full;
+            return `
+                ${'<img src="../Asset/Icons/star.png" style="width:16px;">'.repeat(full)}
+                ${'<img src="../Asset/Icons/star.png" style="width:16px; opacity:0.2; filter:grayscale(1);">'.repeat(empty)}
+            `;
+        }
+
+        loadCarDetails();
+
         // Thumbnail gallery switcher
         function setMain(thumb) {
             document.getElementById('main-car-img').src = thumb.src;

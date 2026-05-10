@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     card.className = 'post-card';
                     card.innerHTML = `
                         <div class="post-voting">
-                            <button class="vote-btn">▲</button>
+                            <button class="vote-btn" onclick="votePost(${post.id}, 1, this)">▲</button>
                             <span class="vote-count">${post.votes}</span>
-                            <button class="vote-btn">▼</button>
+                            <button class="vote-btn" onclick="votePost(${post.id}, -1, this)">▼</button>
                         </div>
                         <div class="post-content">
                             <div class="post-user-info">
@@ -185,6 +185,45 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.classList.add("active");
         });
     });
+
+    // Make votePost globally accessible
+    window.votePost = async (id, vote, btn) => {
+        const user = JSON.parse(sessionStorage.getItem('ai_user') || 'null');
+        if (!user) { alert('Please login first'); return; }
+
+        try {
+            const res = await fetch('../backend/tips/vote_post.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
+                body: JSON.stringify({ post_id: id, vote: vote })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                // Find the count element
+                const votingContainer = btn.closest('.post-voting');
+                const countEl = votingContainer.querySelector('.vote-count');
+                
+                // Update text
+                countEl.textContent = data.votes;
+                
+                // Visual feedback
+                votingContainer.querySelectorAll('.vote-btn').forEach(b => b.style.color = '');
+                if (data.action !== 'removed') {
+                    btn.style.color = vote === 1 ? '#00c853' : '#ff1f1f';
+                }
+                
+                // Temporary alert to confirm it's working without refresh
+                console.log(`Vote updated to ${data.votes}`);
+            } else {
+                alert(data.message);
+            }
+        } catch (err) {
+            console.error("Voting error:", err);
+            alert("Failed to vote. Please check your connection.");
+        }
+    };
 });
 
 async function loadComments(id, btn) {
