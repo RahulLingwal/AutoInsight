@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`${tabId}-tab`).classList.add('active');
 
             // Trigger specific loads
+            if (tabId === 'dashboard') loadDashboard();
+            if (tabId === 'cars') fetchCars();
+            if (tabId === 'users') fetchUsers();
             if (tabId === 'settings') loadProfile();
         });
     });
@@ -100,7 +103,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fetchCars = async () => {
         const res = await fetch('../backend/cars/get_cars.php');
-        const cars = await res.json();
+        const data = await res.json();
+        const cars = data.cars || [];
+        
         carsTableBody.innerHTML = cars.map(car => `
             <tr>
                 <td>
@@ -218,6 +223,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 `).join('');
             }
         } catch (e) {}
+    };
+
+    window.toggleRole = async (id, currentRole) => {
+        if (!confirm(`Are you sure you want to change this user to ${currentRole === 'admin' ? 'User' : 'Admin'}?`)) return;
+        
+        try {
+            const res = await fetch('../backend/admin/update_user_role.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, role: currentRole })
+            });
+            const data = await res.json();
+            if (data.success) {
+                fetchUsers();
+            } else {
+                alert(data.message);
+            }
+        } catch (e) {
+            alert('Failed to update user role.');
+        }
     };
 
     // Logout

@@ -4,15 +4,13 @@ require_once __DIR__ . '/../config/db.php';
 session_start();
 header('Content-Type: application/json');
 
-$userId = requireAuth();
+// Only allow admins
+if ($_SESSION['user_role'] !== 'admin') {
+    jsonResponse(false, 'Unauthorized.');
+}
+
 $db = getDB();
+$stmt = $db->query('SELECT id, name, email, role, created_at FROM users ORDER BY created_at DESC');
+$users = $stmt->fetchAll();
 
-// Admin check
-$userCheck = $db->prepare('SELECT role FROM users WHERE id = ?');
-$userCheck->execute([$userId]);
-$role = $userCheck->fetchColumn();
-if ($role !== 'admin') jsonResponse(false, 'Forbidden');
-
-$users = $db->query("SELECT id, name, email, role, created_at FROM users ORDER BY created_at DESC")->fetchAll();
-
-jsonResponse(true, 'OK', ['users' => $users]);
+jsonResponse(true, 'Users fetched', ['users' => $users]);
