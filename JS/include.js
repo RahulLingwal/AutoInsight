@@ -110,5 +110,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         })
-        .catch(error => console.error("Error loading header:", error));
+    // --- Footer Inclusion ---
+    const footerPath = isRoot ? "HTML/footer.html" : "footer.html";
+    fetch(footerPath)
+        .then(response => response.text())
+        .then(data => {
+            const footerContainers = document.querySelectorAll(".footer");
+            footerContainers.forEach(container => {
+                container.outerHTML = data;
+            });
+
+            // Re-select after injection to fix paths
+            const freshFooter = document.querySelector("footer.footer");
+            if (freshFooter) {
+                const links = freshFooter.querySelectorAll("a");
+                links.forEach(link => {
+                    let href = link.getAttribute("href");
+                    if (!href || href.startsWith("#")) return;
+
+                    if (isRoot) {
+                        // index.html is in root, footer links are relative to HTML/
+                        if (!href.includes("://") && !href.startsWith("../")) {
+                            link.setAttribute("href", "HTML/" + href);
+                        }
+                        if (href.startsWith("../index.html")) {
+                            link.setAttribute("href", "index.html");
+                        }
+                    } else {
+                        // Pages in HTML/ directory
+                        if (href === "index.html") link.setAttribute("href", "../index.html");
+                    }
+                });
+            }
+        })
+        .catch(e => console.error("Error loading footer:", e));
 });
