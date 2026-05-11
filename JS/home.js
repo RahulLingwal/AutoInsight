@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${isFeatured ? '<div style="position: absolute; top: 15px; right: 15px; background: linear-gradient(135deg, #ff1f1f, #d40000); color: white; padding: 5px 14px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; z-index: 10; box-shadow: 0 4px 15px rgba(255, 31, 31, 0.4); text-transform: uppercase; letter-spacing: 0.5px;">Featured</div>' : ''}
                 
                 <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
-                    <img src="${car.image_path || 'Asset/Images/porsche.jpg'}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+                    <img src="${car.image_path || ''}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
                     <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to top, rgba(22, 23, 30, 1), transparent);"></div>
                 </div>
 

@@ -25,12 +25,10 @@
             <!-- Left: Image Gallery -->
             <div class="gallery-col">
                 <div class="main-image-wrapper">
-                    <img id="main-car-img" src="../Asset/Images/porsche.jpg" alt="Honda City" class="main-car-img">
+                    <img id="main-car-img" src="" alt="Car Image" class="main-car-img">
                 </div>
                 <div class="thumbnail-strip">
-                    <img src="../Asset/Images/porsche.jpg" alt="Thumb 1" class="thumb active" onclick="setMain(this)">
-                    <img src="../Asset/Images/rr.jpg"      alt="Thumb 2" class="thumb" onclick="setMain(this)">
-                    <img src="../Asset/Images/gwagon.jpg"  alt="Thumb 3" class="thumb" onclick="setMain(this)">
+                    <!-- Dynamic thumbs will load here -->
                 </div>
             </div>
 
@@ -40,20 +38,20 @@
                 <!-- Title + Rating -->
                 <div class="car-title-area">
                     <div>
-                        <h1 class="car-name">Honda City</h1>
-                        <p class="car-sub">Honda City &bull; 2024 Model</p>
+                        <h1 class="car-name">Loading...</h1>
+                        <p class="car-sub">Please wait while we fetch details</p>
                     </div>
                     <div class="rating-chip">
                         <img src="../Asset/Icons/star.png" alt="Star">
-                        <span class="rating-val">4.5</span>
-                        <span class="review-count">234 reviews</span>
+                        <span class="rating-val">0.0</span>
+                        <span class="review-count">0 reviews</span>
                     </div>
                 </div>
 
                 <!-- Price -->
                 <div class="price-block">
                     <p class="price-label">STARTING PRICE</p>
-                    <p class="price-big">₹12.00 Lakhs</p>
+                    <p class="price-big">₹0.00 Lakhs</p>
                 </div>
 
                 <!-- Quick Specs Grid -->
@@ -62,28 +60,28 @@
                         <span class="spec-label">FUEL TYPE</span>
                         <div class="spec-val">
                             <img src="../Asset/Icons/fuel.svg" alt="Fuel">
-                            Petrol
+                            -
                         </div>
                     </div>
                     <div class="spec-chip">
                         <span class="spec-label">MILEAGE</span>
                         <div class="spec-val">
                             <img src="../Asset/Icons/speedometer.svg" alt="Mileage">
-                            17.8 km/l
+                            -
                         </div>
                     </div>
                     <div class="spec-chip">
                         <span class="spec-label">SEATING</span>
                         <div class="spec-val">
                             <img src="../Asset/Icons/people.svg" alt="Seats">
-                            5 Seats
+                            -
                         </div>
                     </div>
                     <div class="spec-chip">
                         <span class="spec-label">SAFETY</span>
                         <div class="spec-val">
                             <img src="../Asset/Icons/shield.svg" alt="Safety">
-                            5 Stars
+                            -
                         </div>
                     </div>
                 </div>
@@ -100,7 +98,7 @@
         <section class="tabs-section">
             <div class="tab-bar">
                 <button class="tab-btn active" data-tab="specs">Specifications &amp; Features</button>
-                <button class="tab-btn" data-tab="reviews">Owner Reviews (1)</button>
+                <button class="tab-btn" data-tab="reviews">Owner Reviews (0)</button>
             </div>
 
             <!-- Tab: Specs -->
@@ -114,10 +112,10 @@
                             <img src="../Asset/Icons/speedometer.svg" alt="Engine"> Engine &amp; Performance
                         </h3>
                         <table class="spec-table">
-                            <tr><td>Engine</td><td class="val">1.5L i-VTEC</td></tr>
-                            <tr><td>Transmission</td><td class="val">Automatic</td></tr>
-                            <tr><td>Mileage</td><td class="val">17.8 km/l</td></tr>
-                            <tr><td>Fuel Type</td><td class="val">Petrol</td></tr>
+                            <tr><td>Engine</td><td class="val">-</td></tr>
+                            <tr><td>Transmission</td><td class="val">-</td></tr>
+                            <tr><td>Mileage</td><td class="val">-</td></tr>
+                            <tr><td>Fuel Type</td><td class="val">-</td></tr>
                         </table>
                     </div>
 
@@ -127,9 +125,9 @@
                             <img src="../Asset/Icons/people.svg" alt="Dims"> Dimensions &amp; Capacity
                         </h3>
                         <table class="spec-table">
-                            <tr><td>Body Type</td><td class="val">Sedan</td></tr>
-                            <tr><td>Seating Capacity</td><td class="val">5 Seats</td></tr>
-                            <tr><td>Safety Rating</td><td class="val">5 Stars</td></tr>
+                            <tr><td>Body Type</td><td class="val">-</td></tr>
+                            <tr><td>Seating Capacity</td><td class="val">-</td></tr>
+                            <tr><td>Safety Rating</td><td class="val">-</td></tr>
                         </table>
                     </div>
                 </div>
@@ -139,18 +137,13 @@
                     <div class="pros-card">
                         <h4>&#128077; Pros</h4>
                         <ul>
-                            <li>&#10003; Excellent fuel efficiency</li>
-                            <li>&#10003; Spacious interior</li>
-                            <li>&#10003; Reliable engine</li>
-                            <li>&#10003; Good resale value</li>
+                            <li>-</li>
                         </ul>
                     </div>
                     <div class="cons-card">
                         <h4>&#128078; Cons</h4>
                         <ul>
-                            <li>&#10007; Road noise at high speeds</li>
-                            <li>&#10007; Limited boot space</li>
-                            <li>&#10007; Basic infotainment system</li>
+                            <li>-</li>
                         </ul>
                     </div>
                 </div>
@@ -224,12 +217,14 @@
                     document.querySelector('.car-sub').textContent = `${car.brand} ${car.model} • ${car.year} Model`;
                     document.querySelector('.price-big').textContent = `₹${car.price_lakh} Lakhs`;
                     
-                    const mainImg = car.image_path || 'Asset/Images/porsche.jpg';
+                    const mainImg = car.image_path || '';
                     const img2 = car.image2 || mainImg;
                     const img3 = car.image3 || mainImg;
                     const img4 = car.image4 || mainImg;
                     
-                    document.getElementById('main-car-img').src = '../' + mainImg;
+                    if (mainImg) {
+                        document.getElementById('main-car-img').src = '../' + mainImg;
+                    }
                     
                     const thumbStrip = document.querySelector('.thumbnail-strip');
                     thumbStrip.innerHTML = `
