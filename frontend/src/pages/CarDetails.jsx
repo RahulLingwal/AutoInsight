@@ -10,6 +10,8 @@ export default function CarDetails() {
   const [user, setUser] = useState(() =>
     JSON.parse(sessionStorage.getItem("ai_user") || "null"),
   );
+  // Photo carousel index state
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   // Form states for creating / editing review
   const [rating, setRating] = useState(5);
@@ -109,14 +111,34 @@ export default function CarDetails() {
         )}
         {data && (
           <>
-            <img
-              className="h-96 w-full rounded-2xl object-cover"
-              src={data.car.image?.startsWith("/") ? data.car.image : `/${data.car.image}`}
-              alt={`${data.car.brand} ${data.car.model}`}
-              onError={(e) => {
-                e.target.src = "/Asset/Images/bmw.jpg";
-              }}
-            />
+            {/* Photo carousel with small frame */}
+            <div className="relative h-64 w-full overflow-hidden rounded-2xl bg-gray-800/30">
+              {data.car.images && data.car.images.length > 1 ? (
+                <>
+                  <img
+                    className="h-full w-full object-cover transition-opacity duration-300"
+                    src={data.car.images[photoIndex]?.startsWith('/') ? data.car.images[photoIndex] : `/${data.car.images[photoIndex]}`}
+                    alt={`${data.car.brand} ${data.car.model} photo ${photoIndex + 1}`}
+                    onError={(e) => { e.target.src = "/Asset/Images/bmw.jpg"; }}
+                  />
+                  <button
+                    className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1 text-white hover:bg-black/60"
+                    onClick={() => setPhotoIndex((photoIndex - 1 + data.car.images.length) % data.car.images.length)}
+                  >‹</button>
+                  <button
+                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1 text-white hover:bg-black/60"
+                    onClick={() => setPhotoIndex((photoIndex + 1) % data.car.images.length)}
+                  >›</button>
+                </>
+              ) : (
+                <img
+                  className="h-full w-full object-cover"
+                  src={data.car.image?.startsWith('/') ? data.car.image : `/${data.car.image}`}
+                  alt={`${data.car.brand} ${data.car.model}`}
+                  onError={(e) => { e.target.src = "/Asset/Images/bmw.jpg"; }}
+                />
+              )}
+            </div>
             <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <h1 className="text-4xl font-black">
